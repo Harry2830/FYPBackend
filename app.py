@@ -6,6 +6,7 @@ from contextlib import contextmanager
 from fastapi import FastAPI, HTTPException, Form, Request
 from pydantic import BaseModel
 from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 import mysql.connector
 from dotenv import load_dotenv
@@ -23,37 +24,27 @@ load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 DATABASE_URI = os.getenv("DATABASE_URI")   
 
-db_config = {
-    "host": os.getenv("DB_HOST", ""),
-    "user": os.getenv("DB_USER", ""),
-    "password": os.getenv("DB_PASSWORD", ""),
-    "database": os.getenv("DB_NAME", "desi_restaurants"),
-    "port": int(os.getenv("DB_PORT", 3306)),
-    "auth_plugin": 'mysql_native_password',
-    "use_pure": True
-}
-
-client = MongoClient(DATABASE_URI)
-db = client["Review"]  # For storing users, history, and API data
-books = db['Users']
-
 # Initialize FastAPI application
 app = FastAPI()
 
+origins = [
+    "http://localhost:3000",  
+    "https://ai.myedbox.com/",
+]
 
-class UserAdd(BaseModel):
-    email: str
-    password: str
-    name: str 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Explicitly specify the frontend origin
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 
-class SearchRequest(BaseModel):
-    query: str
 
 class SearchResponse(BaseModel):
     query: str
     parsed_params: list
     results: list
-
 
 
 def initialize_chat_model():

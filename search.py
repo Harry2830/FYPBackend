@@ -1,5 +1,7 @@
 import os
 import mysql.connector
+import math
+
 
 db_config = {
     "host": os.getenv("DB_HOST", ""),
@@ -89,39 +91,38 @@ def get_llm_messages(query):
     Value: search
     Description: Type of action requested
 
+    Parameter: location_latitude
+    Value: 24.8607
+    Description: Latitude of the user's location (if provided)
+
+    Parameter: location_longitude
+    Value: 67.0011
+    Description: Longitude of the user's location (if provided)
+
     Rules:
     1. For number limits (like "top 10"), always use parameter name "limit" with numeric value.
     2. For food items (biryani, dosa etc), always use parameter name "dish_type".
     3. For actions (find, search, batao, dikha etc), always use parameter name "action" with value "search".
     4. For locations (area, jagah etc), use parameter name "location".
-    5. Always include descriptions for each parameter.
-    6. Format must match the example exactly.
+    5. For latitude and longitude, use parameters "location_latitude" and "location_longitude".
+    6. Always include descriptions for each parameter.
+    7. Format must match the example exactly.
 
     Example inputs and outputs:
 
-    Input: "best biryani places in delhi"
+    Input: "best biryani places near latitude 24.8607 and longitude 67.0011"
     Output:
     Parameter: dish_type
     Value: biryani
     Description: Type of dish requested
 
-    Parameter: location
-    Value: delhi
-    Description: Search location requested
+    Parameter: location_latitude
+    Value: 24.8607
+    Description: Latitude of the user's location
 
-    Parameter: action
-    Value: search
-    Description: Search action requested
-
-    Input: "top 5 dosa ki jagah batao"
-    Output:
-    Parameter: limit
-    Value: 5
-    Description: Number of results requested
-
-    Parameter: dish_type
-    Value: dosa
-    Description: Type of dish requested
+    Parameter: location_longitude
+    Value: 67.0011
+    Description: Longitude of the user's location
 
     Parameter: action
     Value: search
@@ -134,6 +135,24 @@ def get_llm_messages(query):
     ]
     
     return messages
+
+# Haversine formula function
+def haversine(lat1, lon1, lat2, lon2):
+    R = 6371.0  # Earth radius in km
+    
+    lat1_rad = math.radians(lat1)
+    lon1_rad = math.radians(lon1)
+    lat2_rad = math.radians(lat2)
+    lon2_rad = math.radians(lon2)
+    
+    dlat = lat2_rad - lat1_rad
+    dlon = lon2_rad - lon1_rad
+    
+    a = math.sin(dlat / 2)**2 + math.cos(lat1_rad) * math.cos(lat2_rad) * math.sin(dlon / 2)**2
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1 - a))
+    
+    distance = R * c  # in kilometers
+    return distance
 
 def execute_query(params):
     """
@@ -149,6 +168,8 @@ def execute_query(params):
         conditions = []
         query_params = []
         limit = 10  # default limit
+        user_lat = None
+        user_lon = None
 
         # Build query conditions based on parameters
         for param in params:
@@ -157,17 +178,29 @@ def execute_query(params):
                 query_params.append(f"%{param['value']}%")
             elif param["parameter"] == "limit":
                 limit = int(param["value"])
+            elif param["parameter"] == "location_latitude":
+                user_lat = float(param["value"])
+            elif param["parameter"] == "location_longitude":
+                user_lon = float(param["value"])
 
         # Construct the base query
         sql_query = """
-        SELECT r.name AS restaurant_name, d.dish_name, d.price, d.popularity_score
-        FROM Dishes d
-        JOIN Restaurants r ON d.restaurant_id = r.restaurant_id
+        SELECT r.name AS restaurant_name, d.dish_name, d.price, d.popularity_score, r.location_latitude AS restaurant_latitude, r.location_longitude AS restaurant_longitude
+        FROM recommendar_dish d
+        JOIN recommendar_restaurant r ON d.restaurant_id = r.restaurant_id
         """
 
         # Add WHERE clause if we have conditions
         if conditions:
             sql_query += " WHERE " + " AND ".join(conditions)
+
+        # Calculate the distance between user and restaurant if latitude and longitude are provided
+        if user_lat is not None and user_lon is not None:
+            # Ensure latitude and longitude are part of the SELECT statement to use in HAVING clause
+            sql_query += """
+            HAVING (6371 * acos(cos(radians(%s)) * cos(radians(r.location_latitude)) * cos(radians(r.location_longitude) - radians(%s)) + sin(radians(%s)) * sin(radians(r.location_latitude)))) < 10
+            """
+            query_params.extend([user_lat, user_lon, user_lat])
 
         # Add LIMIT clause
         sql_query += f" LIMIT {limit}"
