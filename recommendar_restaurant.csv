@@ -1,0 +1,34 @@
+restaurant_id,name,location_latitude,location_longitude,cuisine_type,average_rating,location_name
+1,Broadway Pizza,24.866700,67.033300,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Bahdurabad
+2,Broadway Pizza,24.899500,67.235600,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Bahria Town
+3,Broadway Pizza,24.814600,67.035600,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Bukhari
+4,Broadway Pizza,24.854300,67.010800,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Chundrigar
+5,Broadway Pizza,24.813000,67.020000,"[""Pizza"", ""Italian"", ""Fast Food""]",4.3,Clifton 2
+6,Broadway Pizza,24.813000,67.020000,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Clifton
+7,Broadway Pizza,24.800700,67.028500,"[""Pizza"", ""Italian"", ""Fast Food""]",4.4,DHA PHASE 8
+8,Broadway Pizza,24.810200,67.029200,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Dolmen Mall Clifton
+9,Broadway Pizza,24.924500,67.065700,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Dolmen Mall Hyderi
+10,Broadway Pizza,24.893500,67.075200,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Dolmen Mall TariqRD
+11,Broadway Pizza,24.935700,67.059900,"[""Pizza"", ""Italian"", ""Fast Food""]",3.8,FB Area
+12,Broadway Pizza,24.873200,67.030300,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Garden
+13,Broadway Pizza,24.933300,67.113100,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Gulshan
+14,Broadway Pizza,24.798300,67.033500,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Ittehad
+15,Broadway Pizza,24.899800,67.138500,"[""Pizza"", ""Italian"", ""Fast Food""]",4.3,Jinnah Avenue
+16,Broadway Pizza,24.908500,67.122800,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Johar
+17,Broadway Pizza,24.850000,67.120000,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Korangi
+18,Broadway Pizza,24.942300,67.064700,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Lucky One Mall
+19,Broadway Pizza,24.971800,67.097500,"[""Pizza"", ""Italian"", ""Fast Food""]",3.7,Maymar
+20,Broadway Pizza,24.957800,67.072300,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,North Karachi
+21,Broadway Pizza,24.942800,67.058000,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,North Nazimabad
+22,Broadway Pizza,24.852000,67.010000,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,RMR
+23,Broadway Pizza,24.912300,67.119000,"[""Pizza"", ""Italian"", ""Fast Food""]",3.8,Scheme 33
+24,Broadway Pizza,24.805400,67.035400,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Shahbaz
+25,Broadway Pizza,24.870700,67.157200,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Shah Faisal
+26,Broadway Pizza,24.867500,67.061700,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,SMCHS
+27,Broadway Pizza,24.889700,67.064200,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Tipu Sultan
+28,Burger-O-Clock,24.899500,67.235600,"[""Fast Food"", ""Burgers"", ""American""]",4.3,Bahria Town
+29,Burger-O-Clock,24.854300,67.010800,"[""Fast Food"", ""Burgers"", ""American""]",4.2,Chundrigar
+30,Burger-O-Clock,24.800700,67.028500,"[""Fast Food"", ""Burgers"", ""American""]",4.4,DHA
+31,Burger-O-Clock,24.810200,67.029200,"[""Fast Food"", ""Burgers"", ""American""]",4.5,Dolmen Mall Clifton
+32,Burger-O-Clock,24.893500,67.075200,"[""Fast Food"", ""Burgers"", ""American""]",4.1,Dolmen Mall TariqRD
+33,Burger-O-Clock,24.933300,67.113100,"[""Fast Food"", ""Burgers"", ""American""]",4.2,Gulshan

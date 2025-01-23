@@ -88,3 +88,28 @@ def handle_signin(user: dict, request: Request, result_holder: dict):
         result_holder["name"] = db_user.get("name")  # Fetch the name field from the database user
     except Exception as e:
         result_holder["error"] = str(e)
+        
+
+        
+        
+def handle_newsletter(user: dict, result_holder: dict):
+    try:
+        # Find the user by email
+        db_user = db.Newsletter.find_one({"email": user['email']})
+        if db_user:
+            result_holder["message"] = "Already subscribed!"
+            return
+
+        # Store the login history with the IP address in the "History" collection
+        newsletter_subscribe = {
+            "email": user['email'],
+            "time": get_local_time(),
+        }
+        db.Newsletter.insert_one(newsletter_subscribe)
+
+        # Populate the result holder with successful login info
+        result_holder["message"] = "Thank you for subscribing!"
+    except Exception as e:
+        result_holder["error"] = str(e)
+        
+        

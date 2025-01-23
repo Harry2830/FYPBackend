@@ -5,7 +5,7 @@ import re
 from contextlib import contextmanager
 from fastapi import FastAPI, HTTPException, Form, Request
 from pydantic import BaseModel
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import ValidationError
 import mysql.connector
@@ -30,6 +30,7 @@ app = FastAPI()
 origins = [
     "http://localhost:3000",  
     "https://ai.myedbox.com/",
+    "https://logsaga.com/",
 ]
 
 app.add_middleware(
@@ -144,6 +145,37 @@ async def signin(
         "ip": result_holder["ip"],
         "name": result_holder["name"]
     }
+    
+@app.post("/api/newsletter")
+async def signin(
+    email: str = Form(...),
+    ):
+    result_holder = {}
+
+    user = {"email":email}
+
+    # Start the sign-in process in a background thread
+    thread = threading.Thread(target=auth.handle_newsletter, args=(user, result_holder))
+    thread.start()
+    thread.join()  # Wait for the thread to finish
+
+    # Handle the result or error from the background thread
+    if "error" in result_holder:
+        raise HTTPException(status_code=401, detail=result_holder["error"])
+
+    return {
+        "message": result_holder["message"],
+    }
+    
+@app.get("/media/{folder}/{filename}")
+async def get_media_file(folder: str, filename: str):
+    try:
+        file_path = os.path.join("media", folder, filename)
+        if not os.path.exists(file_path):
+            raise HTTPException(status_code=404, detail="File not found")
+        return FileResponse(file_path)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
     
 
 if __name__ == "__main__":

@@ -1,0 +1,34 @@
+restaurant_id,name,location_latitude,location_longitude,cuisine_type,average_rating,location_name,full_address,corrected_latitude,corrected_longitude
+1,Broadway Pizza,24.8667,67.0333,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Bahdurabad,Broadway Pizza Bahdurabad Karachi,24.8830778,67.06768509999999
+2,Broadway Pizza,24.8995,67.2356,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Bahria Town,Broadway Pizza Bahria Town Karachi,25.0312873,67.30762589999999
+3,Broadway Pizza,24.8146,67.0356,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Bukhari,Broadway Pizza Bukhari Karachi,24.7861888,67.0576182
+4,Broadway Pizza,24.8543,67.0108,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Chundrigar,Broadway Pizza Chundrigar Karachi,24.8488311,66.9985931
+5,Broadway Pizza,24.813,67.02,"[""Pizza"", ""Italian"", ""Fast Food""]",4.3,Clifton 2,Broadway Pizza Clifton 2 Karachi,24.8108671,67.0180905
+6,Broadway Pizza,24.813,67.02,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Clifton,Broadway Pizza Clifton Karachi,24.80214,67.0296141
+7,Broadway Pizza,24.8007,67.0285,"[""Pizza"", ""Italian"", ""Fast Food""]",4.4,DHA PHASE 8,Broadway Pizza DHA PHASE 8 Karachi,24.787661,67.078909
+8,Broadway Pizza,24.8102,67.0292,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Dolmen Mall Clifton,Broadway Pizza Dolmen Mall Clifton Karachi,24.80214,67.0296141
+9,Broadway Pizza,24.9245,67.0657,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Dolmen Mall Hyderi,Broadway Pizza Dolmen Mall Hyderi Karachi,24.9356229,67.04030250000001
+10,Broadway Pizza,24.8935,67.0752,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Dolmen Mall TariqRD,Broadway Pizza Dolmen Mall TariqRD Karachi,24.8766357,67.0626343
+11,Broadway Pizza,24.9357,67.0599,"[""Pizza"", ""Italian"", ""Fast Food""]",3.8,FB Area,Broadway Pizza FB Area Karachi,24.9239253,67.0590972
+12,Broadway Pizza,24.8732,67.0303,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Garden,Broadway Pizza Garden Karachi,24.8855184,67.0308691
+13,Broadway Pizza,24.9333,67.1131,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Gulshan,Broadway Pizza Gulshan Karachi,24.9068978,67.1116023
+14,Broadway Pizza,24.7983,67.0335,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,Ittehad,Broadway Pizza Ittehad Karachi,24.8332964,67.0735827
+15,Broadway Pizza,24.8998,67.1385,"[""Pizza"", ""Italian"", ""Fast Food""]",4.3,Jinnah Avenue,Broadway Pizza Jinnah Avenue Karachi,24.9275809,67.1790491
+16,Broadway Pizza,24.9085,67.1228,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Johar,Broadway Pizza Johar Karachi,24.9172013,67.1314538
+17,Broadway Pizza,24.85,67.12,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Korangi,Broadway Pizza Korangi Karachi,24.8244319,67.1442751
+18,Broadway Pizza,24.9423,67.0647,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Lucky One Mall,Broadway Pizza Lucky One Mall Karachi,24.9322044,67.0872242
+19,Broadway Pizza,24.9718,67.0975,"[""Pizza"", ""Italian"", ""Fast Food""]",3.7,Maymar,Broadway Pizza Maymar Karachi,25.0198028,67.1258841
+20,Broadway Pizza,24.9578,67.0723,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,North Karachi,Broadway Pizza North Karachi Karachi,24.9749308,67.0658442
+21,Broadway Pizza,24.9428,67.058,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,North Nazimabad,Broadway Pizza North Nazimabad Karachi,24.9409449,67.0495118
+22,Broadway Pizza,24.852,67.01,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,RMR,Broadway Pizza RMR Karachi,24.9068978,67.1116023
+23,Broadway Pizza,24.9123,67.119,"[""Pizza"", ""Italian"", ""Fast Food""]",3.8,Scheme 33,Broadway Pizza Scheme 33 Karachi,24.9583817,67.1200954
+24,Broadway Pizza,24.8054,67.0354,"[""Pizza"", ""Italian"", ""Fast Food""]",4.2,Shahbaz,Broadway Pizza Shahbaz Karachi,24.8607343,67.0011364
+25,Broadway Pizza,24.8707,67.1572,"[""Pizza"", ""Italian"", ""Fast Food""]",3.9,Shah Faisal,Broadway Pizza Shah Faisal Karachi,24.8840635,67.1458378
+26,Broadway Pizza,24.8675,67.0617,"[""Pizza"", ""Italian"", ""Fast Food""]",4.1,SMCHS,Broadway Pizza SMCHS Karachi,24.8635249,67.0549364
+27,Broadway Pizza,24.8897,67.0642,"[""Pizza"", ""Italian"", ""Fast Food""]",4.0,Tipu Sultan,Broadway Pizza Tipu Sultan Karachi,24.8752259,67.0845077
+28,Burger-O-Clock,24.8995,67.2356,"[""Fast Food"", ""Burgers"", ""American""]",4.3,Bahria Town,Burger-O-Clock Bahria Town Karachi,25.0304069,67.3067284
+29,Burger-O-Clock,24.8543,67.0108,"[""Fast Food"", ""Burgers"", ""American""]",4.2,Chundrigar,Burger-O-Clock Chundrigar Karachi,24.8488311,66.9985931
+30,Burger-O-Clock,24.8007,67.0285,"[""Fast Food"", ""Burgers"", ""American""]",4.4,DHA,Burger-O-Clock DHA Karachi,24.7955928,67.0506499
+31,Burger-O-Clock,24.8102,67.0292,"[""Fast Food"", ""Burgers"", ""American""]",4.5,Dolmen Mall Clifton,Burger-O-Clock Dolmen Mall Clifton Karachi,24.8016146,67.0295233
+32,Burger-O-Clock,24.8935,67.0752,"[""Fast Food"", ""Burgers"", ""American""]",4.1,Dolmen Mall TariqRD,Burger-O-Clock Dolmen Mall TariqRD Karachi,24.8726789,67.0605643
+33,Burger-O-Clock,24.9333,67.1131,"[""Fast Food"", ""Burgers"", ""American""]",4.2,Gulshan,Burger-O-Clock Gulshan Karachi,24.931931,67.100726

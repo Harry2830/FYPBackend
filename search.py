@@ -185,7 +185,7 @@ def execute_query(params):
 
         # Construct the base query
         sql_query = """
-        SELECT r.name AS restaurant_name, d.dish_name, d.price, d.popularity_score, r.location_latitude AS restaurant_latitude, r.location_longitude AS restaurant_longitude
+        SELECT r.name AS restaurant_name, d.dish_name, d.price, d.popularity_score, r.location_latitude AS restaurant_latitude, r.location_longitude AS restaurant_longitude, d.image
         FROM recommendar_dish d
         JOIN recommendar_restaurant r ON d.restaurant_id = r.restaurant_id
         """
