@@ -281,9 +281,9 @@ def recent_reviews(result_holder: dict):
             cursor.close()
             connection.close()
             
-def get_top_restaurants(result_holder: dict):
+def get_top_rated_restaurants(result_holder: dict):
     """
-    Fetch the top 3 restaurants with the highest Brilliant_count.
+    Fetch the top 3 restaurants ranked by the average of Food, Service, and Ambiance scores.
     """
     connection = None
     try:
@@ -294,25 +294,29 @@ def get_top_restaurants(result_holder: dict):
         connection = mysql.connector.connect(**db_config)
         cursor = connection.cursor(dictionary=True)  # Use dictionary=True to get results as dicts
 
-        # SQL query to fetch top 3 restaurants with the highest Brilliant_count
+        # SQL query to fetch top 3 restaurants by overall average sentiment score
         query = """
         SELECT 
-            ra.restaurant_id, 
-            rr.name, 
-            rr.location_latitude, 
-            rr.location_longitude, 
-            rr.cuisine_type, 
-            rr.average_rating, 
-            rr.location_name, 
-            ra.Brilliant_count
+            ra.restaurant_id,
+            rr.name,
+            rr.location_latitude,
+            rr.location_longitude,
+            rr.cuisine_type,
+            rr.average_rating,
+            rr.location_name,
+            AVG(ra.average_sentiment_score) AS overall_average_score
         FROM 
             recommendar_aspectanalytics ra
         INNER JOIN 
             recommendar_restaurant rr
         ON 
             ra.restaurant_id = rr.restaurant_id
+        WHERE 
+            ra.aspect_type IN ('Food', 'Service', 'Ambiance')
+        GROUP BY 
+            ra.restaurant_id
         ORDER BY 
-            ra.Brilliant_count DESC
+            overall_average_score DESC
         LIMIT 3;
         """
 
