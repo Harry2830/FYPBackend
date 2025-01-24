@@ -146,6 +146,41 @@ async def signin(
         "name": result_holder["name"]
     }
     
+@app.post("/api/recent")
+async def recent():
+    result_holder = {}
+
+    # Start the sign-in process in a background thread
+    thread = threading.Thread(target=search.recent_reviews, args=(result_holder,))
+    thread.start()
+    thread.join()  # Wait for the thread to finish
+
+    # Handle the result or error from the background thread
+    if "error" in result_holder:
+        raise HTTPException(status_code=401, detail=result_holder["error"])
+
+    return {
+        "reviews": result_holder["reviews"],
+    }
+    
+@app.post("/api/top-restaurants")
+async def top_restaurants():
+    result_holder = {}
+
+    # Start the query process in a background thread
+    thread = threading.Thread(target=search.get_top_restaurants, args=(result_holder,))
+    thread.start()
+    thread.join()  # Wait for the thread to finish
+
+    # Handle the result or error from the background thread
+    if "error" in result_holder:
+        raise HTTPException(status_code=401, detail=result_holder["error"])
+
+    return {
+        "restaurants": result_holder["restaurants"],
+    }    
+
+    
 @app.post("/api/newsletter")
 async def signin(
     email: str = Form(...),

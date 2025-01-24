@@ -222,3 +222,120 @@ def execute_query(params):
     finally:
         if conn:
             conn.close()
+
+def recent_reviews(result_holder: dict):
+    """
+    Execute search query based on structured parameters.
+    Returns a list of restaurant results.
+    """
+    connection = None
+    try:
+        # Initialize reviews in case of an error or no results
+        result_holder["reviews"] = []
+
+        # Establish connection to the database
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor(dictionary=True)  # Use dictionary=True to get results as dicts
+
+        # SQL query to fetch top 10 reviews sorted by timestamp
+        query = """
+        SELECT 
+            review_id, 
+            review_text, 
+            overall_sentiment, 
+            timestamp, 
+            restaurant_id, 
+            ambiance_score, 
+            dish_id, 
+            food_quality_score, 
+            sentiment_score, 
+            service_experience_score
+        FROM 
+            recommendar_review
+        ORDER BY 
+            timestamp DESC
+        LIMIT 10;
+        """
+
+        # Execute the query
+        cursor.execute(query)
+
+        # Fetch the top 10 results
+        results = cursor.fetchall()
+
+        # If no results, update the error key
+        if not results:
+            result_holder["error"] = "No reviews found."
+            return
+
+        # Add results to the result holder
+        result_holder["reviews"] = results
+
+    except mysql.connector.Error as err:
+        # Handle database errors
+        result_holder["error"] = f"Database error: {err}"
+
+    finally:
+        # Ensure resources are properly cleaned up
+        if connection and connection.is_connected():
+            cursor.close()
+            connection.close()
+            
+def get_top_restaurants(result_holder: dict):
+    """
+    Fetch the top 3 restaurants with the highest Brilliant_count.
+    """
+    connection = None
+    try:
+        # Initialize restaurants in case of an error or no results
+        result_holder["restaurants"] = []
+
+        # Establish connection to the database
+        connection = mysql.connector.connect(**db_config)
+        cursor = connection.cursor(dictionary=True)  # Use dictionary=True to get results as dicts
+
+        # SQL query to fetch top 3 restaurants with the highest Brilliant_count
+        query = """
+        SELECT 
+            ra.restaurant_id, 
+            rr.name, 
+            rr.location_latitude, 
+            rr.location_longitude, 
+            rr.cuisine_type, 
+            rr.average_rating, 
+            rr.location_name, 
+            ra.Brilliant_count
+        FROM 
+            recommendar_aspectanalytics ra
+        INNER JOIN 
+            recommendar_restaurant rr
+        ON 
+            ra.restaurant_id = rr.restaurant_id
+        ORDER BY 
+            ra.Brilliant_count DESC
+        LIMIT 3;
+        """
+
+        # Execute the query
+        cursor.execute(query)
+
+        # Fetch the top 3 results
+        results = cursor.fetchall()
+
+        # If no results, update the error key
+        if not results:
+            result_holder["error"] = "No restaurants found."
+            return
+
+        # Add results to the result holder
+        result_holder["restaurants"] = results
+
+    except mysql.connector.Error as err:
+        # Handle database errors
+        result_holder["error"] = f"Database error: {err}"
+
+    finally:
+        # Ensure resources are properly cleaned up
+        if connection and connection.is_connected():
+            cursor.close()
+            connection.close()
