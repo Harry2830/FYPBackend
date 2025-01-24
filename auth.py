@@ -7,10 +7,10 @@ from dotenv import load_dotenv
 from fastapi import Request
 
 load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-DATABASE_URI = os.getenv("DATABASE_URI")   
+GROQ_API_KEYY = os.getenv("GROQ_API_KEY")
+DATABASE_URL = os.getenv("DATABASE_URL")   
 
-client = MongoClient(DATABASE_URI)
+client = MongoClient(DATABASE_URL)
 db = client["Review"]  # For storing users, history, and API data
 books = db['Users']
 
