@@ -163,12 +163,12 @@ async def recent():
         "reviews": result_holder["reviews"],
     }
     
-@app.post("/api/top-restaurants")
-async def top_restaurants():
+@app.post("/api/top-rated-restaurants")
+async def top_rated_restaurants():
     result_holder = {}
 
     # Start the query process in a background thread
-    thread = threading.Thread(target=search.get_top_restaurants, args=(result_holder,))
+    thread = threading.Thread(target=search.get_top_rated_restaurants, args=(result_holder,))
     thread.start()
     thread.join()  # Wait for the thread to finish
 
@@ -178,7 +178,7 @@ async def top_restaurants():
 
     return {
         "restaurants": result_holder["restaurants"],
-    }    
+    }  
 
     
 @app.post("/api/newsletter")

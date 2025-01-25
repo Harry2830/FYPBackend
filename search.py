@@ -240,20 +240,26 @@ def recent_reviews(result_holder: dict):
         # SQL query to fetch top 10 reviews sorted by timestamp
         query = """
         SELECT 
-            review_id, 
-            review_text, 
-            overall_sentiment, 
-            timestamp, 
-            restaurant_id, 
-            ambiance_score, 
-            dish_id, 
-            food_quality_score, 
-            sentiment_score, 
-            service_experience_score
+            rr.review_id, 
+            rr.review_text, 
+            rr.overall_sentiment, 
+            rr.timestamp, 
+            rr.restaurant_id, 
+            rr.ambiance_score, 
+            rr.dish_id, 
+            rr.food_quality_score, 
+            rr.sentiment_score, 
+            rr.service_experience_score, 
+            r.name AS restaurant_name, 
+            r.image AS restaurant_image
         FROM 
-            recommendar_review
+            recommendar_review rr
+        JOIN 
+            recommendar_restaurant r
+        ON 
+            rr.restaurant_id = r.restaurant_id
         ORDER BY 
-            timestamp DESC
+            rr.timestamp DESC
         LIMIT 10;
         """
 
@@ -298,12 +304,13 @@ def get_top_rated_restaurants(result_holder: dict):
         query = """
         SELECT 
             ra.restaurant_id,
-            rr.name,
+            rr.name AS restaurant_name,
             rr.location_latitude,
             rr.location_longitude,
             rr.cuisine_type,
             rr.average_rating,
             rr.location_name,
+            r.image AS restaurant_image,
             AVG(ra.average_sentiment_score) AS overall_average_score
         FROM 
             recommendar_aspectanalytics ra
@@ -311,10 +318,21 @@ def get_top_rated_restaurants(result_holder: dict):
             recommendar_restaurant rr
         ON 
             ra.restaurant_id = rr.restaurant_id
+        INNER JOIN
+            recommendar_restaurant r
+        ON
+            ra.restaurant_id = r.restaurant_id
         WHERE 
             ra.aspect_type IN ('Food', 'Service', 'Ambiance')
         GROUP BY 
-            ra.restaurant_id
+            ra.restaurant_id, 
+            rr.name, 
+            rr.location_latitude, 
+            rr.location_longitude, 
+            rr.cuisine_type, 
+            rr.average_rating, 
+            rr.location_name, 
+            r.image
         ORDER BY 
             overall_average_score DESC
         LIMIT 3;
