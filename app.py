@@ -51,6 +51,16 @@ class SearchResponse(BaseModel):
     parsed_params: list
     results: list
 
+class DishOut(BaseModel):
+    dish_id:     int
+    dish_name:   str
+    price:       float
+    category:    Optional[str]
+    description: Optional[str]
+    cuisines:    List[str]
+    avg_rating:  Optional[float]
+    popularity:  Optional[float]
+
 def initialize_chat_model():
     try:
         chat_groq = ChatGroq(
@@ -65,6 +75,89 @@ def initialize_chat_model():
 
 
 llm = initialize_chat_model()
+
+@app.post("/api/dishes/search", response_model=List[DishOut])
+def search_dishes_form(
+    search:       Optional[str]      = Form(None),
+    cuisines:     Optional[List[str]] = Form(None),
+    price_ranges: Optional[List[int]] = Form(None),
+    ratings:      Optional[List[int]] = Form(None),
+    sort_by:      str                 = Form("popularity"),
+):
+    with auth.get_direct_db_connection() as conn:
+        cursor = conn.cursor(dictionary=True)
+        try:
+            sql = """
+            SELECT
+              d.dish_id,
+              d.dish_name,
+              COALESCE(o.price_override, d.price) AS price,
+              d.category,
+              d.description,
+              GROUP_CONCAT(DISTINCT r.cuisine_type) AS cuisines_csv,
+              AVG(dr.rating)                     AS avg_rating,
+              MAX(o.popularity_score)            AS popularity
+            FROM recommendar_dish d
+            JOIN recommendar_dishoffering o 
+              ON d.dish_id = o.dish_id
+            JOIN recommendar_restaurant r   
+              ON o.restaurant_id = r.restaurant_id
+            LEFT JOIN recommendar_dishofferingreview dr
+              ON o.dish_offering_id = dr.dish_offering_id
+            """
+            where_clauses = []
+            params = []
+
+            if search:
+                where_clauses.append("d.dish_name LIKE %s")
+                params.append(f"%{search}%")
+
+            if cuisines:
+                or_c = []
+                for c in cuisines:
+                    or_c.append("JSON_CONTAINS(r.cuisine_type, %s)")
+                    params.append(json.dumps(c))
+                where_clauses.append("(" + " OR ".join(or_c) + ")")
+
+            if price_ranges:
+                max_price = max(price_ranges)
+                where_clauses.append("COALESCE(o.price_override, d.price) <= %s")
+                params.append(max_price)
+
+            if where_clauses:
+                sql += " WHERE " + " AND ".join(where_clauses)
+
+            sql += " GROUP BY d.dish_id"
+
+            if ratings:
+                min_rating = min(ratings)
+                sql += " HAVING avg_rating >= %s"
+                params.append(min_rating)
+
+            sort_map = {
+                "popularity": "popularity DESC",
+                "price":      "price ASC",
+                "rating":     "avg_rating DESC",
+            }
+            sql += f" ORDER BY {sort_map.get(sort_by, 'popularity DESC')}"
+            sql += " LIMIT 100"
+
+            cursor.execute(sql, tuple(params))
+            rows = cursor.fetchall()
+
+            # Convert the CSV into a Python list
+            result = []
+            for row in rows:
+                csv = row.pop("cuisines_csv") or ""
+                row["cuisines"] = csv.split(",") if csv else []
+                result.append(row)
+
+            return result
+
+        except mysql.connector.Error as e:
+            raise HTTPException(status_code=500, detail=f"DB error: {e}")
+        finally:
+            cursor.close()
 
 @app.post("/api/search", response_model=SearchResponse)
 async def search_query(query: str = Form(...)):
