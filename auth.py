@@ -5,6 +5,8 @@ from datetime import datetime
 import pytz
 from dotenv import load_dotenv
 from fastapi import Request
+import mysql.connector
+from contextlib import contextmanager
 
 load_dotenv()
 GROQ_API_KEYY = os.getenv("GROQ_API_KEY")
@@ -14,7 +16,38 @@ client = MongoClient(DATABASE_URL)
 db = client["Review"]  # For storing users, history, and API data
 books = db['Users']
 
+db_config = {
+        "host": os.getenv("DB_HOST"),
+        "user": os.getenv("DB_USER"),
+        "password": os.getenv("DB_PASSWORD"),
+        "database": os.getenv("DB_NAME"),
+        "port": int(os.getenv("DB_PORT", 3306)),
+        "auth_plugin": 'mysql_native_password',
+        "use_pure": True
+    }
+
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+def get_direct_db_connection():
+    """Get a direct MySQL connection (no context manager)"""
+    return mysql.connector.connect(**db_config)
+
+@contextmanager
+def get_db_connection():
+    """Create and manage database connection with context manager"""
+    conn = None
+    try:
+        print("🔌 Connecting to MySQL...")
+        conn = mysql.connector.connect(**db_config)
+        print("✅ MySQL connection successful")
+        yield conn
+    except mysql.connector.Error as e:
+        print("❌ MySQL connection failed:", e)
+        raise
+    finally:
+        if conn:
+            conn.close()
+            print("🔒 MySQL connection closed")
 
 def get_local_time():
     local_tz = pytz.timezone("Asia/Karachi")

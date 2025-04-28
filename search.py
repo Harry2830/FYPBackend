@@ -1,7 +1,13 @@
 import os
 import mysql.connector
 import math
+import prompt
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
 
+
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 db_config = {
     "host": os.getenv("DB_HOST", ""),
@@ -157,71 +163,103 @@ def haversine(lat1, lon1, lat2, lon2):
 def execute_query(params):
     """
     Execute search query based on structured parameters.
-    Returns a list of restaurant results.
+    Returns up to `limit` unique dish items (deduped by dish_name).
     """
-    conn = None
     try:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
+        with get_db_connection() as conn:
+            cursor = conn.cursor(dictionary=True)
 
-        # Initialize query building components
-        conditions = []
-        query_params = []
-        limit = 10  # default limit
-        user_lat = None
-        user_lon = None
+            # --- Parse params ---
+            unique_limit = 10
+            dish_filter   = None
+            user_lat      = None
+            user_lon      = None
 
-        # Build query conditions based on parameters
-        for param in params:
-            if param["parameter"] == "dish_type":
-                conditions.append("d.dish_name LIKE %s")
-                query_params.append(f"%{param['value']}%")
-            elif param["parameter"] == "limit":
-                limit = int(param["value"])
-            elif param["parameter"] == "location_latitude":
-                user_lat = float(param["value"])
-            elif param["parameter"] == "location_longitude":
-                user_lon = float(param["value"])
+            for p in params:
+                if p["parameter"] == "dish_type":
+                    dish_filter = f"%{p['value']}%"
+                elif p["parameter"] == "limit":
+                    unique_limit = int(p["value"])
+                elif p["parameter"] == "location_latitude":
+                    user_lat = float(p["value"])
+                elif p["parameter"] == "location_longitude":
+                    user_lon = float(p["value"])
 
-        # Construct the base query
-        sql_query = """
-        SELECT r.name AS restaurant_name, d.dish_name, d.price, d.popularity_score, r.location_latitude AS restaurant_latitude, r.location_longitude AS restaurant_longitude, d.image,r.location_name
-        FROM recommendar_dish d
-        JOIN recommendar_restaurant r ON d.restaurant_id = r.restaurant_id
-        """
+            # --- Build SELECT fields ---
+            select_fields = [
+                "r.name            AS restaurant_name",
+                "d.dish_name",
+                "COALESCE(o.price_override, d.price) AS price",
+                "r.location_latitude  AS restaurant_latitude",
+                "r.location_longitude AS restaurant_longitude",
+                "r.location_name",
+            ]
+            query_args = []
 
-        # Add WHERE clause if we have conditions
-        if conditions:
-            sql_query += " WHERE " + " AND ".join(conditions)
+            # if we have user location, include distance for ordering/filtering
+            if user_lat is not None and user_lon is not None:
+                select_fields.insert(
+                    0,
+                    "(6371 * acos("
+                      "cos(radians(%s)) * cos(radians(r.location_latitude)) * "
+                      "cos(radians(r.location_longitude) - radians(%s)) + "
+                      "sin(radians(%s)) * sin(radians(r.location_latitude))"
+                    ")) AS distance"
+                )
+                query_args.extend([user_lat, user_lon, user_lat])
 
-        # Calculate the distance between user and restaurant if latitude and longitude are provided
-        if user_lat is not None and user_lon is not None:
-            # Ensure latitude and longitude are part of the SELECT statement to use in HAVING clause
-            sql_query += """
-            HAVING (6371 * acos(cos(radians(%s)) * cos(radians(r.location_latitude)) * cos(radians(r.location_longitude) - radians(%s)) + sin(radians(%s)) * sin(radians(r.location_latitude)))) < 10
+            sql = f"""
+                SELECT {', '.join(select_fields)}
+                  FROM recommendar_dishoffering o
+                  JOIN recommendar_dish       d ON o.dish_id       = d.dish_id
+                  JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
             """
-            query_params.extend([user_lat, user_lon, user_lat])
 
-        # Add LIMIT clause
-        sql_query += f" LIMIT {limit}"
+            # --- Build WHERE clauses ---
+            where = []
+            if dish_filter:
+                where.append("d.dish_name LIKE %s")
+                query_args.append(dish_filter)
 
-        # Execute the query
-        cursor.execute(sql_query, tuple(query_params))
-        results = cursor.fetchall()
+            if user_lat is not None and user_lon is not None:
+                where.append(
+                    "(6371 * acos("
+                      "cos(radians(%s)) * cos(radians(r.location_latitude)) * "
+                      "cos(radians(r.location_longitude) - radians(%s)) + "
+                      "sin(radians(%s)) * sin(radians(r.location_latitude))"
+                    ")) < 10"
+                )
+                query_args.extend([user_lat, user_lon, user_lat])
 
-        # If no results found, log it
-        if not results:
-            return []
+            if where:
+                sql += " WHERE " + " AND ".join(where)
 
-        return results
+            # order by distance if available
+            if user_lat is not None and user_lon is not None:
+                sql += " ORDER BY distance"
+
+            # no SQL LIMIT here – we'll enforce a **unique** limit in Python
+            cursor.execute(sql, tuple(query_args))
+            rows = cursor.fetchall()
+
+            # --- Dedupe by dish_name & slice to unique_limit ---
+            seen = set()
+            unique_results = []
+            for row in rows:
+                dish = row["dish_name"]
+                if dish not in seen:
+                    seen.add(dish)
+                    unique_results.append(row)
+                    if len(unique_results) >= unique_limit:
+                        break
+
+            return unique_results
 
     except mysql.connector.Error as e:
         return [{"error": str(e)}]
     except Exception as e:
         return [{"error": str(e)}]
-    finally:
-        if conn:
-            conn.close()
+
 
 def recent_reviews(result_holder: dict):
     """
@@ -361,3 +399,122 @@ def get_top_rated_restaurants(result_holder: dict):
         if connection and connection.is_connected():
             cursor.close()
             connection.close()
+
+chat_groq = ChatGroq(
+    api_key=GROQ_API_KEY,
+    model="llama3-70b-8192",
+    temperature=0.2,
+)
+
+def extract_parameters_with_llm(query):
+    """Extract aspect, target and location_preference using LLM"""
+    aspect_prompt = prompt.get_aspect_extraction_prompt()
+    messages = [
+        ("system", aspect_prompt),
+        ("human", f"Input: {query}\nOutput:")
+    ]
+    response = chat_groq.invoke(messages)
+    structured_output = response.content.strip()
+    print(f"LLaMA Response:\n{structured_output}")
+    
+    return structured_output, parse_llm_response(structured_output)
+
+
+def parse_llm_response(structured_output):
+    """Parse the LLM response to extract parameters"""
+    parsed = {}
+    current_param = None
+    lines = structured_output.splitlines()
+    for line in lines:
+        line = line.strip()
+        if line.lower().startswith("parameter:"):
+            current_param = line.split(":", 1)[1].strip().lower()
+        elif line.lower().startswith("value:") and current_param:
+            value = line.split(":", 1)[-1].strip()
+            parsed[current_param] = value
+            current_param = None
+    return parsed
+
+def get_location_based_recommendations(cursor, aspect, user_latitude, user_longitude):
+    """Get recommendations based on sentiment score and location proximity"""
+    query_sql = """
+        SELECT a.analytics_id, a.average_sentiment_score, r.name AS restaurant_name,
+               r.location_latitude, r.location_longitude, r.location_name
+        FROM recommendar_aspectanalytics a
+        JOIN recommendar_restaurant r ON a.restaurant_id = r.restaurant_id
+        WHERE a.aspect_type = %s
+        ORDER BY a.average_sentiment_score DESC
+        LIMIT 10
+    """
+    cursor.execute(query_sql, (aspect.capitalize(),))
+    candidates = cursor.fetchall()
+    print(f"📤 {len(candidates)} candidate row(s) returned by sentiment score")
+
+    # Define 10 kilometer boundary (approximate in lat/long)
+    # 1 degree of latitude/longitude is roughly 111km at the equator
+    # So 10km is approximately 0.09 degrees
+    max_distance_degrees = 0.09
+    
+    filtered_candidates = []
+    for candidate in candidates:
+        try:
+            r_lat = float(candidate["location_latitude"])
+            r_lon = float(candidate["location_longitude"])
+            
+            # Calculate distance in degrees (approximate)
+            distance_degrees = ((r_lat - user_latitude) ** 2 + (r_lon - user_longitude) ** 2) ** 0.5
+            
+            # Calculate distance in kilometers (approximate)
+            distance_km = distance_degrees * 111
+            
+            # Only include restaurants within 10km
+            if distance_km <= 10:
+                candidate["distance"] = distance_km
+                filtered_candidates.append(candidate)
+        except Exception:
+            continue
+    
+    # Sort by distance
+    filtered_candidates.sort(key=lambda x: x["distance"])
+    
+    print(f"Found {len(filtered_candidates)} restaurants within 10km radius")
+    return filtered_candidates[:3]
+
+def get_aspect_based_recommendations(cursor, aspect):
+    """Get recommendations based on aspect categories"""
+    final_results = {}
+    categories = {
+        "Brilliant": "Brilliant_count",
+        "Average": "Average_count",
+        "BelowAverage": "BelowAverage_count",
+        "Good": "Good_count",
+        "NotRecommended": "NotRecommended_count"
+    }
+    selected_fields = {
+        "Brilliant": ["analytics_id", "Brilliant_count", "restaurant_name", "location_latitude", "location_longitude", "location_name"],
+        "Average": ["analytics_id", "Average_count", "restaurant_name", "location_latitude", "location_longitude", "location_name"],
+        "BelowAverage": ["analytics_id", "BelowAverage_count", "restaurant_name", "location_latitude", "location_longitude", "location_name"],
+        "Good": ["analytics_id", "Good_count", "restaurant_name", "location_latitude", "location_longitude", "location_name"],
+        "NotRecommended": ["analytics_id", "NotRecommended_count", "restaurant_name", "location_latitude", "location_longitude", "location_name"]
+    }
+    
+    for cat, col in categories.items():
+        query_sql = f"""
+            SELECT a.analytics_id, a.{col}, r.name AS restaurant_name, 
+                   r.location_latitude, r.location_longitude, r.location_name 
+            FROM recommendar_aspectanalytics a
+            JOIN recommendar_restaurant r ON a.restaurant_id = r.restaurant_id
+            WHERE a.aspect_type = %s
+            ORDER BY a.{col} DESC
+            LIMIT 3
+        """
+        cursor.execute(query_sql, (aspect.capitalize(),))
+        rows = cursor.fetchall()
+        filtered_rows = [{k: row[k] for k in selected_fields[cat]} for row in rows]
+        final_results[cat] = {
+            "count": len(filtered_rows),
+            "data": filtered_rows
+        }
+        print(f"📤 {len(filtered_rows)} row(s) returned for category {cat}")
+    
+    return final_results

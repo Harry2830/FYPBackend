@@ -18,9 +18,6 @@ from langchain_groq import ChatGroq
 import search
 import auth
 
-load_dotenv()
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-
 # Initialize FastAPI application
 app = FastAPI()
 
@@ -51,49 +48,50 @@ class SearchResponse(BaseModel):
     parsed_params: list
     results: list
 
-def initialize_chat_model():
-    try:
-        chat_groq = ChatGroq(
-            api_key=GROQ_API_KEY,
-            model="llama-3.3-70b-versatile",
-            temperature=0.2,
-        )
-        return chat_groq
-    except Exception as e:
-        raise RuntimeError(f"ChatGroq initialization failed: {e}")
 
-
-
-llm = initialize_chat_model()
-
-@app.post("/api/search", response_model=SearchResponse)
-async def search_query(query: str = Form(...)):
+@app.post("/api/search")
+async def search_query(
+    query: str = Form(...),
+    user_latitude: float = Form(None),
+    user_longitude: float = Form(None)
+):
     try:
         user_query = query.strip()
-        
-        # Get LLM messages and invoke
-        messages = search.get_llm_messages(user_query)
-        print("*********************************************************************")
-        print(messages)
-        print("*********************************************************************")
-        ai_msg = llm.invoke(messages)
-        print("*********************************************************************")
-        print(ai_msg)
-        print("*********************************************************************")
-        # Parse parameters
-        parsed_params = search.extract_json_from_response(ai_msg.content)
-        print("*********************************************************************")
-        print(parsed_params)
-        print("*********************************************************************")
-        # Execute search with parsed parameters
-        results = search.execute_query(parsed_params)
-        
-        return SearchResponse(
-            query=user_query,
-            parsed_params=parsed_params,
-            results=results
-        )
+        print(f"User query: {user_query}")
+
+        # Extract parameters using LLM
+        structured_output, parsed = search.extract_parameters_with_llm(user_query)
+            
+        aspect = parsed.get("aspect")
+        target = parsed.get("target")
+        location_pref = parsed.get("location_preference", "none").lower()
+
+        # Query database based on extracted parameters
+        final_results = {}
+        with auth.get_db_connection() as conn:
+            cursor = conn.cursor(dictionary=True)
+            
+            if aspect and aspect.lower() != "general":
+                print(f"📥 Running DB queries for aspect='{aspect}', target='{target}', location_preference='{location_pref}'")
+                
+                if location_pref == "yes" and user_latitude is not None and user_longitude is not None:
+                    location_results = search.get_location_based_recommendations(cursor, aspect, user_latitude, user_longitude)
+                    final_results["LocationBased"] = location_results
+                    print(f"📍 {len(final_results['LocationBased'])} closest restaurant(s) selected based on user location")
+                else:
+                    final_results = search.get_aspect_based_recommendations(cursor, aspect)
+            else:
+                final_results = search.get_overall_recommendations(cursor)
+
+        return {
+            "query": user_query,
+            "structured_output": structured_output,
+            "parsed": parsed,
+            "results": final_results
+        }
+
     except Exception as e:
+        print(f"Error: {e}")
         raise HTTPException(status_code=500, detail=str(e))
 
 # -------- GET /api/restaurants (Code 1) --------
