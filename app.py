@@ -26,8 +26,8 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",  
-    "https://ai.myedbox.com/",
-    "https://logsaga.com/",
+    "https://ai.myedbox.com",
+    "https://logsaga.com",
 ]
 
 app.add_middleware(
