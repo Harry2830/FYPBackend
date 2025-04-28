@@ -261,144 +261,119 @@ def execute_query(params):
         return [{"error": str(e)}]
 
 
+import mysql.connector
+
 def recent_reviews(result_holder: dict):
     """
-    Execute search query based on structured parameters.
-    Returns a list of restaurant results.
+    Fetch the 10 most recent reviews, including restaurant name.
     """
     connection = None
+    cursor = None
     try:
-        # Initialize reviews in case of an error or no results
+        # initialize in case of early return
         result_holder["reviews"] = []
 
-        # Establish connection to the database
+        # connect to DB
         connection = mysql.connector.connect(**db_config)
-        cursor = connection.cursor(dictionary=True)  # Use dictionary=True to get results as dicts
+        cursor = connection.cursor(dictionary=True)
 
-        # SQL query to fetch top 10 reviews sorted by timestamp
+        # pull the latest 10 reviews
         query = """
-        SELECT 
-            rr.review_id, 
-            rr.review_text, 
-            rr.overall_sentiment, 
-            rr.timestamp, 
-            rr.restaurant_id, 
-            rr.ambiance_score, 
-            rr.dish_id, 
-            rr.food_quality_score, 
-            rr.sentiment_score, 
-            rr.service_experience_score, 
-            r.name AS restaurant_name, 
-            r.image AS restaurant_image
-        FROM 
-            recommendar_review rr
-        JOIN 
-            recommendar_restaurant r
-        ON 
-            rr.restaurant_id = r.restaurant_id
-        ORDER BY 
-            rr.timestamp DESC
+        SELECT
+            rr.review_id,
+            rr.review_text,
+            rr.timestamp,
+            rr.restaurant_id,
+            rr.dish_id,
+            rr.ambiance_score,
+            rr.food_quality_score,
+            rr.sentiment_score,
+            rr.service_experience_score,
+            r.name AS restaurant_name
+        FROM recommendar_review AS rr
+        JOIN recommendar_restaurant AS r
+          ON rr.restaurant_id = r.restaurant_id
+        ORDER BY rr.timestamp DESC
         LIMIT 10;
         """
 
-        # Execute the query
         cursor.execute(query)
+        rows = cursor.fetchall()
 
-        # Fetch the top 10 results
-        results = cursor.fetchall()
-
-        # If no results, update the error key
-        if not results:
+        if not rows:
             result_holder["error"] = "No reviews found."
-            return
-
-        # Add results to the result holder
-        result_holder["reviews"] = results
+        else:
+            result_holder["reviews"] = rows
 
     except mysql.connector.Error as err:
-        # Handle database errors
         result_holder["error"] = f"Database error: {err}"
 
     finally:
-        # Ensure resources are properly cleaned up
-        if connection and connection.is_connected():
+        if cursor:
             cursor.close()
+        if connection and connection.is_connected():
             connection.close()
-            
+
+
 def get_top_rated_restaurants(result_holder: dict):
     """
-    Fetch the top 3 restaurants ranked by the average of Food, Service, and Ambiance scores.
+    Fetch the top 3 restaurants ranked by the average of 
+    Food, Service, and Ambiance scores.
     """
     connection = None
+    cursor = None
+
     try:
-        # Initialize restaurants in case of an error or no results
+        # initialize in case of early return
         result_holder["restaurants"] = []
 
-        # Establish connection to the database
+        # open db connection
         connection = mysql.connector.connect(**db_config)
-        cursor = connection.cursor(dictionary=True)  # Use dictionary=True to get results as dicts
+        cursor = connection.cursor(dictionary=True)
 
-        # SQL query to fetch top 3 restaurants by overall average sentiment score
         query = """
-        SELECT 
+        SELECT
             ra.restaurant_id,
-            rr.name AS restaurant_name,
+            rr.name                AS restaurant_name,
             rr.location_latitude,
             rr.location_longitude,
             rr.cuisine_type,
             rr.average_rating,
             rr.location_name,
-            r.image AS restaurant_image,
             AVG(ra.average_sentiment_score) AS overall_average_score
-        FROM 
-            recommendar_aspectanalytics ra
-        INNER JOIN 
-            recommendar_restaurant rr
-        ON 
-            ra.restaurant_id = rr.restaurant_id
-        INNER JOIN
-            recommendar_restaurant r
-        ON
-            ra.restaurant_id = r.restaurant_id
-        WHERE 
-            ra.aspect_type IN ('Food', 'Service', 'Ambiance')
-        GROUP BY 
-            ra.restaurant_id, 
-            rr.name, 
-            rr.location_latitude, 
-            rr.location_longitude, 
-            rr.cuisine_type, 
-            rr.average_rating, 
-            rr.location_name, 
-            r.image
-        ORDER BY 
-            overall_average_score DESC
+        FROM recommendar_aspectanalytics AS ra
+        JOIN recommendar_restaurant   AS rr
+          ON ra.restaurant_id = rr.restaurant_id
+        WHERE ra.aspect_type IN ('Food', 'Service', 'Ambiance')
+        GROUP BY
+            ra.restaurant_id,
+            rr.name,
+            rr.location_latitude,
+            rr.location_longitude,
+            rr.cuisine_type,
+            rr.average_rating,
+            rr.location_name
+        ORDER BY overall_average_score DESC
         LIMIT 3;
         """
 
-        # Execute the query
         cursor.execute(query)
+        rows = cursor.fetchall()
 
-        # Fetch the top 3 results
-        results = cursor.fetchall()
-
-        # If no results, update the error key
-        if not results:
+        if not rows:
             result_holder["error"] = "No restaurants found."
-            return
-
-        # Add results to the result holder
-        result_holder["restaurants"] = results
+        else:
+            result_holder["restaurants"] = rows
 
     except mysql.connector.Error as err:
-        # Handle database errors
         result_holder["error"] = f"Database error: {err}"
 
     finally:
-        # Ensure resources are properly cleaned up
-        if connection and connection.is_connected():
+        if cursor:
             cursor.close()
+        if connection and connection.is_connected():
             connection.close()
+
 
 chat_groq = ChatGroq(
     api_key=GROQ_API_KEY,
