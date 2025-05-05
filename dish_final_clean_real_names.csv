@@ -1,0 +1,799 @@
+Restaurant,dish_id,user_id,liked,Item,PricePKR,Description,Category
+Kababjees Fried Chicken,1,user_245,1,Celebration Deal 1,620,"Chick N Crunch, Crispy Chicken Piece & Regular Drink",Celebration Deals And Discounts
+Kababjees Fried Chicken,1,user_57,1,Celebration Deal 1,620,"Chick N Crunch, Crispy Chicken Piece & Regular Drink",Celebration Deals And Discounts
+Kababjees Fried Chicken,2,user_27,1,9 Pc Drumsticks Bucket,1410,9 crispy fried drumsticks,Celebration Deals And Discounts
+Kababjees Fried Chicken,2,user_22,1,9 Pc Drumsticks Bucket,1410,9 crispy fried drumsticks,Celebration Deals And Discounts
+Kababjees Fried Chicken,3,user_71,1,3 Pc StripZilla & 1.5 Ltr Drink,850,3 Pc StripZilla & 1.5 Ltr Drink,Celebration Deals And Discounts
+Kababjees Fried Chicken,3,user_68,0,3 Pc StripZilla & 1.5 Ltr Drink,850,3 Pc StripZilla & 1.5 Ltr Drink,Celebration Deals And Discounts
+Kababjees Fried Chicken,4,user_241,1,Original Korean Burger,650,Korean sauce Zenga patty burger,The Original Korean Range
+Kababjees Fried Chicken,4,user_124,1,Original Korean Burger,650,Korean sauce Zenga patty burger,The Original Korean Range
+Kababjees Fried Chicken,5,user_67,1,Original Korean Hot Wings 8 Pc,699,8 Pc wings in Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,5,user_84,0,Original Korean Hot Wings 8 Pc,699,8 Pc wings in Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,6,user_17,1,Original Korean Chicky Bites 9Pc,550,9 Pc Korean sauce bites,The Original Korean Range
+Kababjees Fried Chicken,6,user_141,1,Original Korean Chicky Bites 9Pc,550,9 Pc Korean sauce bites,The Original Korean Range
+Kababjees Fried Chicken,7,user_22,0,Original Korean Loaded Fries,650,Loaded fries with Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,7,user_63,0,Original Korean Loaded Fries,650,Loaded fries with Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,8,user_56,1,Original Korean Rice,490,Butter rice with Hot Shots in Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,8,user_213,1,Original Korean Rice,490,Butter rice with Hot Shots in Korean sauce,The Original Korean Range
+Kababjees Fried Chicken,9,user_14,1,Original Korean Spicy Ramen Noodles,800,Spicy ramen with chicken bites,The Original Korean Range
+Kababjees Fried Chicken,9,user_157,1,Original Korean Spicy Ramen Noodles,800,Spicy ramen with chicken bites,The Original Korean Range
+Kababjees Fried Chicken,10,user_213,1,Original Korean Extreme Spicy Ramen Noodles,800,Extreme spicy ramen with chicken bites,The Original Korean Range
+Kababjees Fried Chicken,10,user_37,1,Original Korean Extreme Spicy Ramen Noodles,800,Extreme spicy ramen with chicken bites,The Original Korean Range
+Kababjees Fried Chicken,11,user_186,1,StripZilla,390,Double chicken strip sandwich,New Arrival
+Kababjees Fried Chicken,11,user_3,1,StripZilla,390,Double chicken strip sandwich,New Arrival
+Kababjees Fried Chicken,12,user_35,0,Spicy Gigantic Burrito,550,Crispy chicken burrito with fries & jalapeños,New Arrival
+Kababjees Fried Chicken,12,user_145,0,Spicy Gigantic Burrito,550,Crispy chicken burrito with fries & jalapeños,New Arrival
+Kababjees Fried Chicken,13,user_145,0,Rice N Spice,390,Spiced butter rice with Hot Shots & Vietnamese sauce,New Arrival
+Kababjees Fried Chicken,13,user_76,1,Rice N Spice,390,Spiced butter rice with Hot Shots & Vietnamese sauce,New Arrival
+Kababjees Fried Chicken,14,user_38,1,Crunch Chicken Alfredo Pasta,899,Creamy Alfredo pasta with crispy chicken,New Arrival
+Kababjees Fried Chicken,14,user_154,1,Crunch Chicken Alfredo Pasta,899,Creamy Alfredo pasta with crispy chicken,New Arrival
+Kababjees Fried Chicken,15,user_100,0,Siracha Wrap,450,Crispy chicken wrap with spicy sauce,New Arrival
+Kababjees Fried Chicken,15,user_202,1,Siracha Wrap,450,Crispy chicken wrap with spicy sauce,New Arrival
+Kababjees Fried Chicken,16,user_178,1,2 Pc Fish & Chips With Tarter Sauce,890,"2 Pc fried fish, fries & tartar sauce",Its Fishtastic
+Kababjees Fried Chicken,16,user_112,1,2 Pc Fish & Chips With Tarter Sauce,890,"2 Pc fried fish, fries & tartar sauce",Its Fishtastic
+Kababjees Fried Chicken,17,user_152,0,2 Pc Fish & Chips With Al Baik Sauce,890,"2 Pc fried fish, fries & Al Baik sauce",Its Fishtastic
+Kababjees Fried Chicken,17,user_246,1,2 Pc Fish & Chips With Al Baik Sauce,890,"2 Pc fried fish, fries & Al Baik sauce",Its Fishtastic
+Kababjees Fried Chicken,18,user_207,0,Fish Burger With Tarter Sauce,650,Fish burger with tartar sauce,Its Fishtastic
+Kababjees Fried Chicken,18,user_67,1,Fish Burger With Tarter Sauce,650,Fish burger with tartar sauce,Its Fishtastic
+Kababjees Fried Chicken,19,user_79,1,Fish Burger With Al Baik Sauce,650,Fish burger with Al Baik sauce,Its Fishtastic
+Kababjees Fried Chicken,19,user_16,1,Fish Burger With Al Baik Sauce,650,Fish burger with Al Baik sauce,Its Fishtastic
+Kababjees Fried Chicken,20,user_6,1,Classic Mayo Loaded Fries,550,"Fries with chicken chunks, mayo & cheese sauce",Loaded Fries
+Kababjees Fried Chicken,20,user_226,1,Classic Mayo Loaded Fries,550,"Fries with chicken chunks, mayo & cheese sauce",Loaded Fries
+Kababjees Fried Chicken,21,user_70,1,Spicy Salsa Cheesy Loaded Fries,550,Fries with salsa powder & cheese sauce,Loaded Fries
+Kababjees Fried Chicken,21,user_196,1,Spicy Salsa Cheesy Loaded Fries,550,Fries with salsa powder & cheese sauce,Loaded Fries
+Kababjees Fried Chicken,22,user_60,1,Plain Crispy Wings,640,8 Pc crispy wings,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,22,user_155,1,Plain Crispy Wings,640,8 Pc crispy wings,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,23,user_96,1,Sizzling Salsa Wings,640,8 Pc wings with salsa seasoning,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,23,user_51,1,Sizzling Salsa Wings,640,8 Pc wings with salsa seasoning,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,24,user_45,0,Buffalo Spicy Wings,640,8 Pc wings with buffalo sauce,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,24,user_173,1,Buffalo Spicy Wings,640,8 Pc wings with buffalo sauce,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,25,user_162,1,Thai Sweet Chilli Wings,640,8 Pc wings with sweet chilli sauce,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,25,user_241,1,Thai Sweet Chilli Wings,640,8 Pc wings with sweet chilli sauce,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,26,user_117,1,Honey Mustard Wings,640,8 Pc wings with honey mustard,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,26,user_80,1,Honey Mustard Wings,640,8 Pc wings with honey mustard,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,27,user_153,1,Zesty Lemon Wings 8pc,640,8 Pc wings with zesty lemon seasoning,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,27,user_13,1,Zesty Lemon Wings 8pc,640,8 Pc wings with zesty lemon seasoning,Wing It (8 Pc Buckets)
+Kababjees Fried Chicken,28,user_114,1,Plain Crispy Chicken Bites,490,9 Pc crispy chicken bites,Chicken Bites (9 PC)
+Kababjees Fried Chicken,28,user_101,1,Plain Crispy Chicken Bites,490,9 Pc crispy chicken bites,Chicken Bites (9 PC)
+Kababjees Fried Chicken,29,user_8,0,Sizzling Salsa Chicken Bites,490,9 Pc bites with salsa seasoning,Chicken Bites (9 PC)
+Kababjees Fried Chicken,29,user_90,1,Sizzling Salsa Chicken Bites,490,9 Pc bites with salsa seasoning,Chicken Bites (9 PC)
+Kababjees Fried Chicken,30,user_197,1,Buffalo Spicy Chicken Bites,490,9 Pc bites with buffalo sauce,Chicken Bites (9 PC)
+Kababjees Fried Chicken,30,user_106,0,Buffalo Spicy Chicken Bites,490,9 Pc bites with buffalo sauce,Chicken Bites (9 PC)
+Kababjees Fried Chicken,31,user_153,1,Thai Sweet Chilli Chicken Bites,490,9 Pc bites with sweet chilli sauce,Chicken Bites (9 PC)
+Kababjees Fried Chicken,31,user_92,1,Thai Sweet Chilli Chicken Bites,490,9 Pc bites with sweet chilli sauce,Chicken Bites (9 PC)
+Kababjees Fried Chicken,32,user_236,1,Honey Mustard Chicken Bites,490,9 Pc bites with honey mustard,Chicken Bites (9 PC)
+Kababjees Fried Chicken,32,user_108,1,Honey Mustard Chicken Bites,490,9 Pc bites with honey mustard,Chicken Bites (9 PC)
+Kababjees Fried Chicken,33,user_131,0,Zesty Lemon Chicken Bites,490,9 Pc bites with zesty lemon seasoning,Chicken Bites (9 PC)
+Kababjees Fried Chicken,33,user_5,1,Zesty Lemon Chicken Bites,490,9 Pc bites with zesty lemon seasoning,Chicken Bites (9 PC)
+Kababjees Fried Chicken,34,user_83,1,Zing Chicken Strips (4Pcs),500,4 Pc crunchy chicken strips,Kiddie Corner
+Kababjees Fried Chicken,34,user_92,1,Zing Chicken Strips (4Pcs),500,4 Pc crunchy chicken strips,Kiddie Corner
+Kababjees Fried Chicken,35,user_43,0,Kiddy Meal 3,550,"Chick n Crunch Burger, small fries & drink/water",Kiddie Corner
+Kababjees Fried Chicken,35,user_212,0,Kiddy Meal 3,550,"Chick n Crunch Burger, small fries & drink/water",Kiddie Corner
+Kababjees Fried Chicken,36,user_221,1,Kiddy Meal 4,670,"Chick n Crunch Burger, small fries, drink/water & toy",Kiddie Corner
+Kababjees Fried Chicken,36,user_6,0,Kiddy Meal 4,670,"Chick n Crunch Burger, small fries, drink/water & toy",Kiddie Corner
+Kababjees Fried Chicken,37,user_28,1,2 Pc Meal Deal,710,"2 chicken pcs, fries, coleslaw & drink",Meal Deals
+Kababjees Fried Chicken,37,user_167,1,2 Pc Meal Deal,710,"2 chicken pcs, fries, coleslaw & drink",Meal Deals
+Kababjees Fried Chicken,38,user_182,1,Ultimate Feast Box,1350,"5 chicken pcs, large fries & 2 drinks",Meal Deals
+Kababjees Fried Chicken,38,user_33,1,Ultimate Feast Box,1350,"5 chicken pcs, large fries & 2 drinks",Meal Deals
+Kababjees Fried Chicken,39,user_218,1,Flavor Craver,1050,"Zenga Burger, chicken pc, fries, coleslaw & drink",Meal Deals
+Kababjees Fried Chicken,39,user_204,1,Flavor Craver,1050,"Zenga Burger, chicken pc, fries, coleslaw & drink",Meal Deals
+Kababjees Fried Chicken,40,user_170,1,Ultimate Crunch Feast,1560,"2 Zenga Burgers, 2 chicken pcs, large fries & 2 drinks",Meal Deals
+Kababjees Fried Chicken,40,user_94,1,Ultimate Crunch Feast,1560,"2 Zenga Burgers, 2 chicken pcs, large fries & 2 drinks",Meal Deals
+Kababjees Fried Chicken,41,user_163,1,3 Pc Crispy Chicken,690,3 crispy chicken pcs,Meal Deals
+Kababjees Fried Chicken,41,user_20,1,3 Pc Crispy Chicken,690,3 crispy chicken pcs,Meal Deals
+Kababjees Fried Chicken,42,user_206,1,2PC Combo,620,"2 chicken pcs, fries, dinner roll & Al-Baik sauce",Meal Deals
+Kababjees Fried Chicken,42,user_167,1,2PC Combo,620,"2 chicken pcs, fries, dinner roll & Al-Baik sauce",Meal Deals
+Kababjees Fried Chicken,43,user_230,0,Mega Snack Box,2050,9 Pcs crispy fried chicken,Exclusive Family Packs
+Kababjees Fried Chicken,43,user_155,1,Mega Snack Box,2050,9 Pcs crispy fried chicken,Exclusive Family Packs
+Kababjees Fried Chicken,44,user_229,1,Family Combo 1,2190,"4 Chick N Crunch Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,44,user_22,1,Family Combo 1,2190,"4 Chick N Crunch Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,45,user_82,1,Family Combo 2,2390,"2 Zenga Burgers, 2 Chick N Crunch Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,45,user_46,1,Family Combo 2,2390,"2 Zenga Burgers, 2 Chick N Crunch Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,46,user_151,1,Family Combo 3,2590,"4 Zenga Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,46,user_68,0,Family Combo 3,2590,"4 Zenga Burgers, 4 chicken pcs, 2 dinner rolls & 1.5L drink",Exclusive Family Packs
+Kababjees Fried Chicken,47,user_77,1,Chick N Crunch Burger,310,Crispy chicken burger,Burgers & Deals
+Kababjees Fried Chicken,47,user_180,1,Chick N Crunch Burger,310,Crispy chicken burger,Burgers & Deals
+Kababjees Fried Chicken,48,user_158,1,Chick N Crunch Burger & Regular Drink,410,Burger with regular drink,Burgers & Deals
+Kababjees Fried Chicken,48,user_37,0,Chick N Crunch Burger & Regular Drink,410,Burger with regular drink,Burgers & Deals
+Kababjees Fried Chicken,49,user_238,1,Chick N Crunch Burger Regular Fries & Regular Drink,590,Burger with fries & regular drink,Burgers & Deals
+Kababjees Fried Chicken,49,user_119,0,Chick N Crunch Burger Regular Fries & Regular Drink,590,Burger with fries & regular drink,Burgers & Deals
+Kababjees Fried Chicken,50,user_9,0,Siracha Burger,420,Spicy crispy chicken fillet burger,Burgers & Deals
+Kababjees Fried Chicken,50,user_136,1,Siracha Burger,420,Spicy crispy chicken fillet burger,Burgers & Deals
+Kababjees Fried Chicken,51,user_24,1,Siracha Burger With Fries,520,Siracha Burger with fries,Burgers & Deals
+Kababjees Fried Chicken,51,user_99,1,Siracha Burger With Fries,520,Siracha Burger with fries,Burgers & Deals
+Kababjees Fried Chicken,52,user_202,1,Siracha Burger With Fries & Regular Drink,570,Siracha Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,52,user_186,0,Siracha Burger With Fries & Regular Drink,570,Siracha Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,53,user_20,1,Zenga Burger,600,Crispy thigh patty burger with Al Baik sauce,Burgers & Deals
+Kababjees Fried Chicken,53,user_227,1,Zenga Burger,600,Crispy thigh patty burger with Al Baik sauce,Burgers & Deals
+Kababjees Fried Chicken,54,user_10,1,Zenger Burger Regular Fries & Regular Drink,910,Zenga Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,54,user_111,1,Zenger Burger Regular Fries & Regular Drink,910,Zenga Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,55,user_142,0,The Majesty Burger,770,Double crispy chicken patty burger,Burgers & Deals
+Kababjees Fried Chicken,55,user_71,1,The Majesty Burger,770,Double crispy chicken patty burger,Burgers & Deals
+Kababjees Fried Chicken,56,user_211,0,Majesty Burger With Fries & Regular Drink,1050,Majesty Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,56,user_61,1,Majesty Burger With Fries & Regular Drink,1050,Majesty Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,57,user_136,1,Spicy Zenga Burger,650,Spicy Zenga Burger,Burgers & Deals
+Kababjees Fried Chicken,57,user_23,1,Spicy Zenga Burger,650,Spicy Zenga Burger,Burgers & Deals
+Kababjees Fried Chicken,58,user_9,1,Spicy Zenga Burger With Fries & Regular Drink,950,Spicy Zenga Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,58,user_174,1,Spicy Zenga Burger With Fries & Regular Drink,950,Spicy Zenga Burger with fries & drink,Burgers & Deals
+Kababjees Fried Chicken,59,user_57,1,Crispy Hot Fries,340,Crispy potato wedges,Crispy French Fries
+Kababjees Fried Chicken,59,user_208,1,Crispy Hot Fries,340,Crispy potato wedges,Crispy French Fries
+Kababjees Fried Chicken,60,user_167,1,Crispy Hot Masala Fries,360,Crispy wedges with in-house spices,Crispy French Fries
+Kababjees Fried Chicken,60,user_203,0,Crispy Hot Masala Fries,360,Crispy wedges with in-house spices,Crispy French Fries
+Kababjees Fried Chicken,61,user_5,1,Fries Bucket With Al Baik Sauce,470,French fries bucket with garlic sauce,Crispy French Fries
+Kababjees Fried Chicken,61,user_82,1,Fries Bucket With Al Baik Sauce,470,French fries bucket with garlic sauce,Crispy French Fries
+Kababjees Fried Chicken,62,user_178,1,Chicken Piece,320,Single crispy chicken piece,Snacks
+Kababjees Fried Chicken,62,user_204,1,Chicken Piece,320,Single crispy chicken piece,Snacks
+Kababjees Fried Chicken,63,user_71,1,Dinner Roll,50,Small bread roll,Snacks
+Kababjees Fried Chicken,63,user_5,1,Dinner Roll,50,Small bread roll,Snacks
+Kababjees Fried Chicken,64,user_23,0,Coleslaw,150,Creamy mayo veggie coleslaw,Snacks
+Kababjees Fried Chicken,64,user_249,1,Coleslaw,150,Creamy mayo veggie coleslaw,Snacks
+Kababjees Fried Chicken,65,user_152,0,Al Baik Sauce,50,Garlic mayo mustard sauce,Snacks
+Kababjees Fried Chicken,65,user_215,0,Al Baik Sauce,50,Garlic mayo mustard sauce,Snacks
+Kababjees Fried Chicken,66,user_145,0,Cheese Slice,80,Premium cheese slice,Snacks
+Kababjees Fried Chicken,66,user_251,1,Cheese Slice,80,Premium cheese slice,Snacks
+Kababjees Fried Chicken,67,user_113,0,Honey Mustard Sauce,60,Honey mustard dip,Snacks
+Kababjees Fried Chicken,67,user_102,0,Honey Mustard Sauce,60,Honey mustard dip,Snacks
+Kababjees Fried Chicken,68,user_220,1,Mineral Water Regular,90,Regular water bottle,Beverages
+Kababjees Fried Chicken,68,user_7,1,Mineral Water Regular,90,Regular water bottle,Beverages
+Kababjees Fried Chicken,69,user_63,0,Regular Drink,130,PET soda bottle,Beverages
+Kababjees Fried Chicken,69,user_77,1,Regular Drink,130,PET soda bottle,Beverages
+Kababjees Fried Chicken,70,user_152,1,1.5 Liter Drink,250,1.5L soda bottle,Beverages
+Kababjees Fried Chicken,70,user_1,1,1.5 Liter Drink,250,1.5L soda bottle,Beverages
+Broadway Pizza,71,user_227,1,Pepsi Strong Deal 1,1099,Medium Pizza & 2 Small Drinks,Pepsi Strong Deals
+Broadway Pizza,71,user_33,0,Pepsi Strong Deal 1,1099,Medium Pizza & 2 Small Drinks,Pepsi Strong Deals
+Broadway Pizza,72,user_243,1,Cricket Deal Large Pizza,1399,Any Large Pizza of your choice,Cricket Deals & Discounts
+Broadway Pizza,72,user_95,1,Cricket Deal Large Pizza,1399,Any Large Pizza of your choice,Cricket Deals & Discounts
+Broadway Pizza,73,user_221,0,Cricket Deal Medium Pizza,999,Any Medium Pizza of your choice,Cricket Deals & Discounts
+Broadway Pizza,73,user_195,1,Cricket Deal Medium Pizza,999,Any Medium Pizza of your choice,Cricket Deals & Discounts
+Broadway Pizza,74,user_160,1,20 Inch Pizza Slice,549,Single 20-inch pizza slice of your choice,Cricket Deals & Discounts
+Broadway Pizza,74,user_70,1,20 Inch Pizza Slice,549,Single 20-inch pizza slice of your choice,Cricket Deals & Discounts
+Broadway Pizza,75,user_79,1,Cricket Deal Regular Pizza,349,"Any 6"" Regular Pizza of your choice",Cricket Deals & Discounts
+Broadway Pizza,75,user_152,0,Cricket Deal Regular Pizza,349,"Any 6"" Regular Pizza of your choice",Cricket Deals & Discounts
+Broadway Pizza,76,user_38,1,Exclusive Deal 1,645,"Regular 6"" Pizza + 2 Garlic Bread + Soft Drink 345ml",Exclusive Deals
+Broadway Pizza,76,user_186,1,Exclusive Deal 1,645,"Regular 6"" Pizza + 2 Garlic Bread + Soft Drink 345ml",Exclusive Deals
+Broadway Pizza,77,user_232,1,Exclusive Deal 2,1599,Medium Pizza + 2 Garlic Bread + Lava Cake + 2 Dips,Exclusive Deals
+Broadway Pizza,77,user_136,1,Exclusive Deal 2,1599,Medium Pizza + 2 Garlic Bread + Lava Cake + 2 Dips,Exclusive Deals
+Broadway Pizza,78,user_189,1,Exclusive Deal 4,1999,Large Pizza + 4 Garlic Bread + Lava Cake + 2 Dips,Exclusive Deals
+Broadway Pizza,78,user_242,1,Exclusive Deal 4,1999,Large Pizza + 4 Garlic Bread + Lava Cake + 2 Dips,Exclusive Deals
+Broadway Pizza,79,user_157,1,Sandwich Deal,549,Any Square or Mighty Sandwich,Exclusive Deals
+Broadway Pizza,79,user_77,1,Sandwich Deal,549,Any Square or Mighty Sandwich,Exclusive Deals
+Broadway Pizza,80,user_143,1,Calzone Deal,549,Any Calzone of your choice,Exclusive Deals
+Broadway Pizza,80,user_157,1,Calzone Deal,549,Any Calzone of your choice,Exclusive Deals
+Broadway Pizza,81,user_156,0,Pasta Deal,649,Select any creamy pasta,Exclusive Deals
+Broadway Pizza,81,user_195,1,Pasta Deal,649,Select any creamy pasta,Exclusive Deals
+Broadway Pizza,82,user_6,0,Oven Baked Potato Wedges 150g,499,Thick potato wedges baked to perfection,Appetizers
+Broadway Pizza,82,user_172,1,Oven Baked Potato Wedges 150g,499,Thick potato wedges baked to perfection,Appetizers
+Broadway Pizza,83,user_137,1,Garlic Bread (4 pcs),399,"Garlic buttered bread, oven baked",Appetizers
+Broadway Pizza,83,user_119,1,Garlic Bread (4 pcs),399,"Garlic buttered bread, oven baked",Appetizers
+Broadway Pizza,84,user_64,1,Arabic Tikka Breads (4 pcs),599,Bread topped with spicy chicken tikka,Appetizers
+Broadway Pizza,84,user_231,1,Arabic Tikka Breads (4 pcs),599,Bread topped with spicy chicken tikka,Appetizers
+Broadway Pizza,85,user_247,1,Mozzarella Breads (4 pcs),499,Garlic bread topped with mozzarella,Appetizers
+Broadway Pizza,85,user_40,1,Mozzarella Breads (4 pcs),499,Garlic bread topped with mozzarella,Appetizers
+Broadway Pizza,86,user_141,1,Chicken Mega Bites (6 pcs),599,Crispy chicken breast bites,Appetizers
+Broadway Pizza,86,user_213,1,Chicken Mega Bites (6 pcs),599,Crispy chicken breast bites,Appetizers
+Broadway Pizza,87,user_173,0,Garlic Mayo Wings (6 pcs),649,Crispy wings in creamy garlic mayo,Chicken Wings
+Broadway Pizza,87,user_234,1,Garlic Mayo Wings (6 pcs),649,Crispy wings in creamy garlic mayo,Chicken Wings
+Broadway Pizza,88,user_142,0,BBQ Ranch Wings (6 pcs),649,Sweet & smoky BBQ dressed wings,Chicken Wings
+Broadway Pizza,88,user_22,1,BBQ Ranch Wings (6 pcs),649,Sweet & smoky BBQ dressed wings,Chicken Wings
+Broadway Pizza,89,user_120,1,Jalapeno Ranch Wings (6 pcs),649,Spicy jalapeno ranch coated wings,Chicken Wings
+Broadway Pizza,89,user_61,1,Jalapeno Ranch Wings (6 pcs),649,Spicy jalapeno ranch coated wings,Chicken Wings
+Broadway Pizza,90,user_69,1,Plain Wings (6 pcs),649,Classic spicy crispy wings,Chicken Wings
+Broadway Pizza,90,user_91,1,Plain Wings (6 pcs),649,Classic spicy crispy wings,Chicken Wings
+Broadway Pizza,91,user_179,1,Habanero Wings (6 pcs),649,Wings with spicy red habanero ranch,Chicken Wings
+Broadway Pizza,91,user_60,0,Habanero Wings (6 pcs),649,Wings with spicy red habanero ranch,Chicken Wings
+Broadway Pizza,92,user_236,1,Kebab Zone Calzone,799,"Chapli Kebab, Seekh Kebab, Mughlai Chicken, veggies & Arabic ranch",Broadway Calzone
+Broadway Pizza,92,user_2,1,Kebab Zone Calzone,799,"Chapli Kebab, Seekh Kebab, Mughlai Chicken, veggies & Arabic ranch",Broadway Calzone
+Broadway Pizza,93,user_213,1,Chicken Zone Calzone,799,"Chicken Tikka, Seekh Kebab, Sausages, Jalapenos & Garlic Ranch",Broadway Calzone
+Broadway Pizza,93,user_9,1,Chicken Zone Calzone,799,"Chicken Tikka, Seekh Kebab, Sausages, Jalapenos & Garlic Ranch",Broadway Calzone
+Broadway Pizza,94,user_91,1,Square Smokey Joe's Sandwich,749,"Smoked chicken, classic sauce, mushroom, olives & cucumber",Sandwiches
+Broadway Pizza,94,user_147,1,Square Smokey Joe's Sandwich,749,"Smoked chicken, classic sauce, mushroom, olives & cucumber",Sandwiches
+Broadway Pizza,95,user_95,1,Square South Western Sandwich,749,"Chicken Tikka, garlic ranch, jalapenos & veggies",Sandwiches
+Broadway Pizza,95,user_141,1,Square South Western Sandwich,749,"Chicken Tikka, garlic ranch, jalapenos & veggies",Sandwiches
+Broadway Pizza,96,user_106,1,Square Zesty Habanero Sandwich,749,"Buffalo chicken, habanero sauce, veggies",Sandwiches
+Broadway Pizza,96,user_168,1,Square Zesty Habanero Sandwich,749,"Buffalo chicken, habanero sauce, veggies",Sandwiches
+Broadway Pizza,97,user_182,1,King Crust Chicken (Large),2499,Stuffed crust loaded with chicken & veggies,King Crust Pizza
+Broadway Pizza,97,user_18,0,King Crust Chicken (Large),2499,Stuffed crust loaded with chicken & veggies,King Crust Pizza
+Broadway Pizza,98,user_4,1,King Crust Beef (Large),2499,Stuffed crust loaded with beef & veggies,King Crust Pizza
+Broadway Pizza,98,user_202,1,King Crust Beef (Large),2499,Stuffed crust loaded with beef & veggies,King Crust Pizza
+Broadway Pizza,99,user_73,1,Chicago Bold Fold,499,"Beef pepperoni, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,99,user_153,0,Chicago Bold Fold,499,"Beef pepperoni, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,100,user_47,0,Dancing Fajita,499,"Chicken fajita, peppers, jalapenos, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,100,user_183,1,Dancing Fajita,499,"Chicken fajita, peppers, jalapenos, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,101,user_155,0,Tarzan Tikka,499,"Chicken tikka, onions, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,101,user_136,1,Tarzan Tikka,499,"Chicken tikka, onions, marinara, mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,102,user_175,1,All Cheese,499,Mozzarella & cheddar cheese overload,Gourmet Flavors Pizza
+Broadway Pizza,102,user_122,1,All Cheese,499,Mozzarella & cheddar cheese overload,Gourmet Flavors Pizza
+Broadway Pizza,103,user_155,1,All Veggie,499,Veggie medley with mushrooms & olives,Gourmet Flavors Pizza
+Broadway Pizza,103,user_183,1,All Veggie,499,Veggie medley with mushrooms & olives,Gourmet Flavors Pizza
+Broadway Pizza,104,user_92,1,Chicken Surprise,499,"Chicken kickers, capsicum, onions, marinara",Gourmet Flavors Pizza
+Broadway Pizza,104,user_11,1,Chicken Surprise,499,"Chicken kickers, capsicum, onions, marinara",Gourmet Flavors Pizza
+Broadway Pizza,105,user_122,1,West Side Garlic,499,"Chicken tikka, garlic ranch, mushrooms, tomatoes",Gourmet Flavors Pizza
+Broadway Pizza,105,user_53,1,West Side Garlic,499,"Chicken tikka, garlic ranch, mushrooms, tomatoes",Gourmet Flavors Pizza
+Broadway Pizza,106,user_49,1,Mughlai Beast,499,"Chicken Mughlai, onion & mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,106,user_154,1,Mughlai Beast,499,"Chicken Mughlai, onion & mozzarella",Gourmet Flavors Pizza
+Broadway Pizza,107,user_94,0,Phantom,539,"Chicken tikka, sausage, seekh kebab, veggies & mozzarella",Royale Flavors Pizza
+Broadway Pizza,107,user_24,1,Phantom,539,"Chicken tikka, sausage, seekh kebab, veggies & mozzarella",Royale Flavors Pizza
+Broadway Pizza,108,user_117,1,Wicked Blend,539,"Chicken tikka, fajita, smoked chicken & veggies",Royale Flavors Pizza
+Broadway Pizza,108,user_40,1,Wicked Blend,539,"Chicken tikka, fajita, smoked chicken & veggies",Royale Flavors Pizza
+Broadway Pizza,109,user_248,0,Mamma Mia Classic,539,"Smoked chicken, beef pepperoni & veggies",Royale Flavors Pizza
+Broadway Pizza,109,user_19,1,Mamma Mia Classic,539,"Smoked chicken, beef pepperoni & veggies",Royale Flavors Pizza
+Broadway Pizza,110,user_142,1,Godspell Beef Load,539,Beef pepperoni & sausage with veggies,Royale Flavors Pizza
+Broadway Pizza,110,user_116,1,Godspell Beef Load,539,Beef pepperoni & sausage with veggies,Royale Flavors Pizza
+Broadway Pizza,111,user_128,0,Gypsy Euro,539,"Chicken sausage, smoked chicken & veggies",Royale Flavors Pizza
+Broadway Pizza,111,user_25,0,Gypsy Euro,539,"Chicken sausage, smoked chicken & veggies",Royale Flavors Pizza
+Broadway Pizza,112,user_24,1,Arabic Ranch Pizza,539,"Chicken Mughlai, Arabic kebab, ranch sauce",Royale Flavors Pizza
+Broadway Pizza,112,user_194,1,Arabic Ranch Pizza,539,"Chicken Mughlai, Arabic kebab, ranch sauce",Royale Flavors Pizza
+Broadway Pizza,113,user_163,1,Habanero Kick Pizza,539,"Buffalo chicken, veggies, habanero sauce",Royale Flavors Pizza
+Broadway Pizza,113,user_72,1,Habanero Kick Pizza,539,"Buffalo chicken, veggies, habanero sauce",Royale Flavors Pizza
+Broadway Pizza,114,user_129,1,Jamaican BBQ,539,"Buffalo chicken, green tikka, BBQ ranch & corn",Royale Flavors Pizza
+Broadway Pizza,114,user_201,0,Jamaican BBQ,539,"Buffalo chicken, green tikka, BBQ ranch & corn",Royale Flavors Pizza
+Broadway Pizza,115,user_175,1,Kiddy Meal,549,"8"" star pizza + slice juice + puzzle",Kids Meal
+Broadway Pizza,115,user_57,1,Kiddy Meal,549,"8"" star pizza + slice juice + puzzle",Kids Meal
+Broadway Pizza,116,user_15,0,BBQ Ranch Pasta,849,"Chicken tikka, olives, BBQ ranch, mozzarella",Pastas
+Broadway Pizza,116,user_220,1,BBQ Ranch Pasta,849,"Chicken tikka, olives, BBQ ranch, mozzarella",Pastas
+Broadway Pizza,117,user_118,1,Spicy Garlic Ranch Pasta,849,"Chicken fajita, jalapenos, garlic ranch, mozzarella",Pastas
+Broadway Pizza,117,user_92,1,Spicy Garlic Ranch Pasta,849,"Chicken fajita, jalapenos, garlic ranch, mozzarella",Pastas
+Broadway Pizza,118,user_65,0,Smokey Joe's Pasta,849,"Chicken sausage, mushrooms, classic sauce, mozzarella",Pastas
+Broadway Pizza,118,user_44,0,Smokey Joe's Pasta,849,"Chicken sausage, mushrooms, classic sauce, mozzarella",Pastas
+Broadway Pizza,119,user_6,1,All New Chocolate Pizza,499,"Chocolate sauce, crumbs on pizza dough",Dessert
+Broadway Pizza,119,user_129,0,All New Chocolate Pizza,499,"Chocolate sauce, crumbs on pizza dough",Dessert
+Broadway Pizza,120,user_129,0,Chocolate Lava Cake,379,Molten center-filled chocolate cake,Dessert
+Broadway Pizza,120,user_151,0,Chocolate Lava Cake,379,Molten center-filled chocolate cake,Dessert
+Broadway Pizza,121,user_96,1,BBQ Ranch Sauce,59,Sweet & smoky BBQ ranch dip,Dipping Sauce
+Broadway Pizza,121,user_166,1,BBQ Ranch Sauce,59,Sweet & smoky BBQ ranch dip,Dipping Sauce
+Broadway Pizza,122,user_20,1,Garlic Mayo Ranch,59,Creamy garlic mayo dip,Dipping Sauce
+Broadway Pizza,122,user_168,1,Garlic Mayo Ranch,59,Creamy garlic mayo dip,Dipping Sauce
+Broadway Pizza,123,user_137,1,Jalapeno Ranch,59,Spicy jalapeno ranch dip,Dipping Sauce
+Broadway Pizza,123,user_131,1,Jalapeno Ranch,59,Spicy jalapeno ranch dip,Dipping Sauce
+Broadway Pizza,124,user_8,0,Spicy Habanero Sauce,59,Fiery habanero sauce,Dipping Sauce
+Broadway Pizza,124,user_105,1,Spicy Habanero Sauce,59,Fiery habanero sauce,Dipping Sauce
+Broadway Pizza,125,user_136,1,7up - 345 ml,129,Lemon-lime soda,Beverages
+Broadway Pizza,125,user_59,1,7up - 345 ml,129,Lemon-lime soda,Beverages
+Broadway Pizza,126,user_108,1,Mirinda - 345 ml,129,Orange soda,Beverages
+Broadway Pizza,126,user_141,1,Mirinda - 345 ml,129,Orange soda,Beverages
+Broadway Pizza,127,user_4,1,Pepsi - 345 ml,129,Cola,Beverages
+Broadway Pizza,127,user_62,1,Pepsi - 345 ml,129,Cola,Beverages
+Broadway Pizza,128,user_62,1,Pepsi - 1 Litre,249,Cola 1L,Beverages
+Broadway Pizza,128,user_138,1,Pepsi - 1 Litre,249,Cola 1L,Beverages
+Broadway Pizza,129,user_145,1,7up - 1 Litre,249,Lemon-lime soda 1L,Beverages
+Broadway Pizza,129,user_186,1,7up - 1 Litre,249,Lemon-lime soda 1L,Beverages
+Broadway Pizza,130,user_77,1,Mirinda - 1 Litre,249,Orange soda 1L,Beverages
+Broadway Pizza,130,user_13,1,Mirinda - 1 Litre,249,Orange soda 1L,Beverages
+Broadway Pizza,131,user_22,0,Mountain Dew - 1 Litre,249,Citrus soda 1L,Beverages
+Broadway Pizza,131,user_198,1,Mountain Dew - 1 Litre,249,Citrus soda 1L,Beverages
+Broadway Pizza,132,user_185,1,Mineral Water - Small,89,Small bottled water,Beverages
+Broadway Pizza,132,user_78,1,Mineral Water - Small,89,Small bottled water,Beverages
+Broadway Pizza,133,user_241,1,Mineral Water - Large,179,Large bottled water,Beverages
+Broadway Pizza,133,user_71,0,Mineral Water - Large,179,Large bottled water,Beverages
+OPTP,134,user_186,1,Cricket Deal 1,750,ShotGun & Original Fries,Cricket Deals & Discounts
+OPTP,134,user_18,1,Cricket Deal 1,750,ShotGun & Original Fries,Cricket Deals & Discounts
+OPTP,135,user_172,1,Cricket Deal 2,1350,"ShotGun Burger, GMC Burger & Original Fries",Cricket Deals & Discounts
+OPTP,135,user_107,1,Cricket Deal 2,1350,"ShotGun Burger, GMC Burger & Original Fries",Cricket Deals & Discounts
+OPTP,136,user_199,1,Spud Cola,180,250 ml Spud Cola,New Arrival
+OPTP,136,user_224,1,Spud Cola,180,250 ml Spud Cola,New Arrival
+OPTP,137,user_72,0,Spicy Korean (Burger),690,Fiery chicken burger with Korean spices,New Arrival
+OPTP,137,user_145,1,Spicy Korean (Burger),690,Fiery chicken burger with Korean spices,New Arrival
+OPTP,138,user_230,1,007 (Beef Burger),1290,"7oz beef patty, double cheese, pickles, special sauce",New Arrival
+OPTP,138,user_189,0,007 (Beef Burger),1290,"7oz beef patty, double cheese, pickles, special sauce",New Arrival
+OPTP,139,user_209,0,Spicy Korean Wings,750,Crispy wings coated in spicy Korean sauce,New Arrival
+OPTP,139,user_34,1,Spicy Korean Wings,750,Crispy wings coated in spicy Korean sauce,New Arrival
+OPTP,140,user_61,1,Loaded Nashville Fries,1150,"Hand-cut fries topped with spicy Nashville chicken, coleslaw & garlic mayo",Loaded Fries
+OPTP,140,user_156,1,Loaded Nashville Fries,1150,"Hand-cut fries topped with spicy Nashville chicken, coleslaw & garlic mayo",Loaded Fries
+OPTP,141,user_96,1,Loaded Bomber Fries,1050,"Fries with chicken chunks, hot garlic mayo & cheese",Loaded Fries
+OPTP,141,user_204,0,Loaded Bomber Fries,1050,"Fries with chicken chunks, hot garlic mayo & cheese",Loaded Fries
+OPTP,142,user_124,1,Loaded Doner Fries,1050,"Fries with beef doner, garlic mayo & chili sauce",Loaded Fries
+OPTP,142,user_89,1,Loaded Doner Fries,1050,"Fries with beef doner, garlic mayo & chili sauce",Loaded Fries
+OPTP,143,user_58,1,7,1290,7oz beef burger with double cheese & special sauce,Beef Burgers
+OPTP,143,user_213,0,7,1290,7oz beef burger with double cheese & special sauce,Beef Burgers
+OPTP,144,user_242,1,Smash Beef Double,1250,"Double smashed beef patties, cheese, grilled onions, special sauce",Beef Burgers
+OPTP,144,user_211,1,Smash Beef Double,1250,"Double smashed beef patties, cheese, grilled onions, special sauce",Beef Burgers
+OPTP,145,user_204,1,Smash Beef Single,850,"Single smashed beef patty, cheese, grilled onions, special sauce",Beef Burgers
+OPTP,145,user_121,1,Smash Beef Single,850,"Single smashed beef patty, cheese, grilled onions, special sauce",Beef Burgers
+OPTP,146,user_186,0,Nashville Hot Sandwich,820,"Spicy fried chicken breast fillet, pickles & sauce",Chicken Burgers
+OPTP,146,user_36,1,Nashville Hot Sandwich,820,"Spicy fried chicken breast fillet, pickles & sauce",Chicken Burgers
+OPTP,147,user_61,0,Chicken Fillet Sandwich,750,Crispy chicken fillet burger with signature seasoning,Chicken Burgers
+OPTP,147,user_164,1,Chicken Fillet Sandwich,750,Crispy chicken fillet burger with signature seasoning,Chicken Burgers
+OPTP,148,user_51,0,Spicy Korean,690,Crispy chicken burger with Korean sauce,Chicken Burgers
+OPTP,148,user_104,1,Spicy Korean,690,Crispy chicken burger with Korean sauce,Chicken Burgers
+OPTP,149,user_133,1,Grilled Chicken,700,Grilled chicken burger with onions & special sauce,Chicken Burgers
+OPTP,149,user_103,1,Grilled Chicken,700,Grilled chicken burger with onions & special sauce,Chicken Burgers
+OPTP,150,user_48,1,The ShotGun,620,Crispy chicken burger with bold spices,Chicken Burgers
+OPTP,150,user_36,1,The ShotGun,620,Crispy chicken burger with bold spices,Chicken Burgers
+OPTP,151,user_97,1,GMC,490,Crispy chicken burger with lettuce & garlic mayo,Chicken Burgers
+OPTP,151,user_184,0,GMC,490,Crispy chicken burger with lettuce & garlic mayo,Chicken Burgers
+OPTP,152,user_30,1,007 Combo,1840,"007 Burger, fries & drink",Combos
+OPTP,152,user_115,1,007 Combo,1840,"007 Burger, fries & drink",Combos
+OPTP,153,user_90,1,Nashville Hot Sandwich Combo,1370,"Nashville Hot Sandwich, fries & drink",Combos
+OPTP,153,user_81,1,Nashville Hot Sandwich Combo,1370,"Nashville Hot Sandwich, fries & drink",Combos
+OPTP,154,user_69,0,Chicken Fillet Sandwich Combo,1300,"Chicken Fillet Sandwich, fries & drink",Combos
+OPTP,154,user_175,1,Chicken Fillet Sandwich Combo,1300,"Chicken Fillet Sandwich, fries & drink",Combos
+OPTP,155,user_243,1,Spicy Korean Combo,1240,"Spicy Korean Burger, fries & Spud Cola",Combos
+OPTP,155,user_140,1,Spicy Korean Combo,1240,"Spicy Korean Burger, fries & Spud Cola",Combos
+OPTP,156,user_141,1,Grilled Chicken Combo,1250,"Grilled Chicken Burger, fries & drink",Combos
+OPTP,156,user_251,0,Grilled Chicken Combo,1250,"Grilled Chicken Burger, fries & drink",Combos
+OPTP,157,user_68,1,Beef Doner Combo,1240,"Beef Doner flatbread, fries & Spud Cola",Combos
+OPTP,157,user_146,0,Beef Doner Combo,1240,"Beef Doner flatbread, fries & Spud Cola",Combos
+OPTP,158,user_41,0,Saudi Chicken Combo,1240,"Saudi Chicken flatbread, fries & Spud Cola",Combos
+OPTP,158,user_93,0,Saudi Chicken Combo,1240,"Saudi Chicken flatbread, fries & Spud Cola",Combos
+OPTP,159,user_199,1,Smash Beef Double Combo,1800,"Smash Beef Double Burger, fries & drink",Combos
+OPTP,159,user_94,1,Smash Beef Double Combo,1800,"Smash Beef Double Burger, fries & drink",Combos
+OPTP,160,user_104,0,The ShotGun Combo,1170,"ShotGun Burger, fries & drink",Combos
+OPTP,160,user_9,1,The ShotGun Combo,1170,"ShotGun Burger, fries & drink",Combos
+OPTP,161,user_233,0,Smash Beef Single Combo,1400,"Smash Beef Single Burger, fries & Spud Cola",Combos
+OPTP,161,user_239,1,Smash Beef Single Combo,1400,"Smash Beef Single Burger, fries & Spud Cola",Combos
+OPTP,162,user_87,1,GMC Combo,1040,"GMC Burger, fries & Spud Cola",Combos
+OPTP,162,user_98,1,GMC Combo,1040,"GMC Burger, fries & Spud Cola",Combos
+OPTP,163,user_114,1,Loaded Feast,3950,"2 Chicken Fillet Sandwiches, Smash Beef Burgers & Loaded Bomber Fries",Family Meals
+OPTP,163,user_87,1,Loaded Feast,3950,"2 Chicken Fillet Sandwiches, Smash Beef Burgers & Loaded Bomber Fries",Family Meals
+OPTP,164,user_182,1,Flatbreads Special,2850,Any 4 flatbreads of your choice,Family Meals
+OPTP,164,user_67,1,Flatbreads Special,2850,Any 4 flatbreads of your choice,Family Meals
+OPTP,165,user_137,1,ShotGun Treat,2790,ShotGun Burgers family pack,Family Meals
+OPTP,165,user_64,1,ShotGun Treat,2790,ShotGun Burgers family pack,Family Meals
+OPTP,166,user_121,1,GMC Saver,2250,GMC Burgers & sides family bag,Family Meals
+OPTP,166,user_126,1,GMC Saver,2250,GMC Burgers & sides family bag,Family Meals
+OPTP,167,user_41,1,GMC Double,1490,2 GMC Burgers & large Garlic Mayo Fries,Family Meals
+OPTP,167,user_3,1,GMC Double,1490,2 GMC Burgers & large Garlic Mayo Fries,Family Meals
+OPTP,168,user_190,1,Spicy Korean Wings,750,Crispy wings in spicy Korean sauce,Wings
+OPTP,168,user_165,1,Spicy Korean Wings,750,Crispy wings in spicy Korean sauce,Wings
+OPTP,169,user_81,0,10 Pcs Chicken & 4 Garlic Mayo Dips,2990,10 pieces southern fried chicken with dips,Fried Chicken
+OPTP,169,user_134,1,10 Pcs Chicken & 4 Garlic Mayo Dips,2990,10 pieces southern fried chicken with dips,Fried Chicken
+OPTP,170,user_169,1,5 Pcs Chicken & 2 Garlic Mayo Dips,1750,5 pieces fried chicken with dips,Fried Chicken
+OPTP,170,user_9,1,5 Pcs Chicken & 2 Garlic Mayo Dips,1750,5 pieces fried chicken with dips,Fried Chicken
+OPTP,171,user_93,1,Breast Meal,1290,Southern fried chicken breast meal,Fried Chicken
+OPTP,171,user_169,1,Breast Meal,1290,Southern fried chicken breast meal,Fried Chicken
+OPTP,172,user_193,1,Leg Meal,1090,Southern fried chicken leg meal,Fried Chicken
+OPTP,172,user_90,1,Leg Meal,1090,Southern fried chicken leg meal,Fried Chicken
+OPTP,173,user_99,1,3 Pcs Chicken & Garlic Mayo Dip,1050,3 pieces fried chicken & dip,Fried Chicken
+OPTP,173,user_232,0,3 Pcs Chicken & Garlic Mayo Dip,1050,3 pieces fried chicken & dip,Fried Chicken
+OPTP,174,user_173,1,2 Pcs Chicken & Garlic Mayo Dip,850,2 pieces fried chicken & dip,Fried Chicken
+OPTP,174,user_153,0,2 Pcs Chicken & Garlic Mayo Dip,850,2 pieces fried chicken & dip,Fried Chicken
+OPTP,175,user_116,0,Nashville Fingers Meal,1250,"4 Nashville chicken fingers, bun, fries, garlic mayo, pickles & coleslaw",Fingers & Nuggets
+OPTP,175,user_245,1,Nashville Fingers Meal,1250,"4 Nashville chicken fingers, bun, fries, garlic mayo, pickles & coleslaw",Fingers & Nuggets
+OPTP,176,user_192,1,Crispy Fingers Meal,1090,"4 southern fried chicken fingers, bun & fries",Fingers & Nuggets
+OPTP,176,user_236,1,Crispy Fingers Meal,1090,"4 southern fried chicken fingers, bun & fries",Fingers & Nuggets
+OPTP,177,user_193,1,Nashville Chicken Fingers,990,4 Nashville flavored chicken fingers & bun,Fingers & Nuggets
+OPTP,177,user_60,1,Nashville Chicken Fingers,990,4 Nashville flavored chicken fingers & bun,Fingers & Nuggets
+OPTP,178,user_224,1,Crispy Chicken Fingers,890,4 crispy chicken fingers & bun,Fingers & Nuggets
+OPTP,178,user_39,1,Crispy Chicken Fingers,890,4 crispy chicken fingers & bun,Fingers & Nuggets
+OPTP,179,user_20,1,10 Pcs Crispy Nuggets & Fries,1050,10 crispy chicken nuggets & fries,Fingers & Nuggets
+OPTP,179,user_233,0,10 Pcs Crispy Nuggets & Fries,1050,10 crispy chicken nuggets & fries,Fingers & Nuggets
+OPTP,180,user_123,1,5 Pcs Crispy Nuggets & Fries,650,5 crispy chicken nuggets & fries,Fingers & Nuggets
+OPTP,180,user_180,1,5 Pcs Crispy Nuggets & Fries,650,5 crispy chicken nuggets & fries,Fingers & Nuggets
+OPTP,181,user_45,1,Beef Doner,690,Beef doner shawarma flatbread with garlic mayo & chili sauce,Flatbreads
+OPTP,181,user_99,1,Beef Doner,690,Beef doner shawarma flatbread with garlic mayo & chili sauce,Flatbreads
+OPTP,182,user_169,0,Saudi Chicken,690,"Saudi chicken flatbread with garlic mayo, fries & pickles",Flatbreads
+OPTP,182,user_110,1,Saudi Chicken,690,"Saudi chicken flatbread with garlic mayo, fries & pickles",Flatbreads
+OPTP,183,user_202,1,Spicy Korean Fries,670,Hand-cut fries with spicy Korean seasoning,Handcut Fries
+OPTP,183,user_38,1,Spicy Korean Fries,670,Hand-cut fries with spicy Korean seasoning,Handcut Fries
+OPTP,184,user_72,0,Cheddar Cheese Fries,670,Hand-cut fries topped with cheddar cheese sauce,Handcut Fries
+OPTP,184,user_249,1,Cheddar Cheese Fries,670,Hand-cut fries topped with cheddar cheese sauce,Handcut Fries
+OPTP,185,user_247,1,Hot Garlic Mayo Fries,640,Fries with hot garlic mayo sauce,Handcut Fries
+OPTP,185,user_142,1,Hot Garlic Mayo Fries,640,Fries with hot garlic mayo sauce,Handcut Fries
+OPTP,186,user_73,1,Garlic Mayo Fries,640,Hand-cut fries with garlic mayo,Handcut Fries
+OPTP,186,user_219,1,Garlic Mayo Fries,640,Hand-cut fries with garlic mayo,Handcut Fries
+OPTP,187,user_32,1,Masala Fries,490,Fries seasoned with OPTP masala,Handcut Fries
+OPTP,187,user_74,1,Masala Fries,490,Fries seasoned with OPTP masala,Handcut Fries
+OPTP,188,user_59,0,Plain Fries,490,Classic hand-cut plain fries,Handcut Fries
+OPTP,188,user_162,1,Plain Fries,490,Classic hand-cut plain fries,Handcut Fries
+OPTP,189,user_59,0,Churros,490,Cinnamon sugar churros with chocolate dip,Sweet Treats
+OPTP,189,user_168,0,Churros,490,Cinnamon sugar churros with chocolate dip,Sweet Treats
+OPTP,190,user_17,0,Chocolate,150,Chocolate dipping sauce,Extras & Drinks
+OPTP,190,user_240,1,Chocolate,150,Chocolate dipping sauce,Extras & Drinks
+OPTP,191,user_203,0,Garlic Mayo,150,Garlic mayo dip,Extras & Drinks
+OPTP,191,user_143,1,Garlic Mayo,150,Garlic mayo dip,Extras & Drinks
+OPTP,192,user_63,1,Hot Garlic Mayo,150,Hot garlic mayo dip,Extras & Drinks
+OPTP,192,user_95,1,Hot Garlic Mayo,150,Hot garlic mayo dip,Extras & Drinks
+OPTP,193,user_111,1,Cheddar Cheese,180,Cheddar cheese dip,Extras & Drinks
+OPTP,193,user_237,1,Cheddar Cheese,180,Cheddar cheese dip,Extras & Drinks
+OPTP,194,user_128,1,Toasted Bun,90,Toasted bun with garlic mayo,Extras & Drinks
+OPTP,194,user_243,1,Toasted Bun,90,Toasted bun with garlic mayo,Extras & Drinks
+OPTP,195,user_58,1,Spud Cola,180,250 ml Spud Cola,Extras & Drinks
+OPTP,195,user_212,0,Spud Cola,180,250 ml Spud Cola,Extras & Drinks
+OPTP,196,user_145,1,Mineral Water,90,Mineral water bottle,Extras & Drinks
+OPTP,196,user_208,1,Mineral Water,90,Mineral water bottle,Extras & Drinks
+Burger O Clock,197,user_33,1,Favorite 1,1327,Fire Bird + Mayo/Wild Fries + drink,Favorite Deal
+Burger O Clock,197,user_25,1,Favorite 1,1327,Fire Bird + Mayo/Wild Fries + drink,Favorite Deal
+Burger O Clock,198,user_224,1,Any 1 Wrap Deal,1227,Any wrap + Gourmet Fries + drink,Favorite Deal
+Burger O Clock,198,user_40,1,Any 1 Wrap Deal,1227,Any wrap + Gourmet Fries + drink,Favorite Deal
+Burger O Clock,199,user_61,0,Exclusive Deal,1556,2 Crispy/Fiery Chicken Burgers & 2 Drinks,Exclusive Discounted Deals
+Burger O Clock,199,user_176,1,Exclusive Deal,1556,2 Crispy/Fiery Chicken Burgers & 2 Drinks,Exclusive Discounted Deals
+Burger O Clock,200,user_248,0,Chick n' Crisp Burger,749,"Crispy chicken, secret sauce, cheese & lettuce",Crispy Chicken Burger
+Burger O Clock,200,user_170,1,Chick n' Crisp Burger,749,"Crispy chicken, secret sauce, cheese & lettuce",Crispy Chicken Burger
+Burger O Clock,201,user_128,1,Fire Bird Burger,799,Spicy crispy chicken burger,Crispy Chicken Burger
+Burger O Clock,201,user_114,0,Fire Bird Burger,799,Spicy crispy chicken burger,Crispy Chicken Burger
+Burger O Clock,202,user_141,1,Chick N Crisp Smoky Tang,799,Crispy chicken with smoky tang toppings,Crispy Chicken Burger
+Burger O Clock,202,user_204,1,Chick N Crisp Smoky Tang,799,Crispy chicken with smoky tang toppings,Crispy Chicken Burger
+Burger O Clock,203,user_146,1,Chick N Crisp Jalapeno Spark,799,Crispy chicken with jalapeños & jalapeno mayo,Crispy Chicken Burger
+Burger O Clock,203,user_204,1,Chick N Crisp Jalapeno Spark,799,Crispy chicken with jalapeños & jalapeno mayo,Crispy Chicken Burger
+Burger O Clock,204,user_189,1,Gigantic Burger,1049,Double crispy chicken patties & cheese,Crispy Chicken Burger
+Burger O Clock,204,user_196,0,Gigantic Burger,1049,Double crispy chicken patties & cheese,Crispy Chicken Burger
+Burger O Clock,205,user_10,0,Fiery Gigantic,1099,Spicy double crispy chicken burger,Crispy Chicken Burger
+Burger O Clock,205,user_212,1,Fiery Gigantic,1099,Spicy double crispy chicken burger,Crispy Chicken Burger
+Burger O Clock,206,user_213,1,Grilled Chicken,749,"Grilled chicken, cheese & veggies",Grilled Chicken Burger
+Burger O Clock,206,user_33,1,Grilled Chicken,749,"Grilled chicken, cheese & veggies",Grilled Chicken Burger
+Burger O Clock,207,user_234,1,Grill Chicken Smoky Tang,799,Grilled chicken with smoky tang,Grilled Chicken Burger
+Burger O Clock,207,user_122,1,Grill Chicken Smoky Tang,799,Grilled chicken with smoky tang,Grilled Chicken Burger
+Burger O Clock,208,user_20,0,Grill Chicken Jalapeno Spark,799,Grilled chicken with jalapeños,Grilled Chicken Burger
+Burger O Clock,208,user_57,1,Grill Chicken Jalapeno Spark,799,Grilled chicken with jalapeños,Grilled Chicken Burger
+Burger O Clock,209,user_27,0,Beef Cheese,799,"5 oz beef patty, cheese, sauces",Beef Burgers
+Burger O Clock,209,user_27,1,Beef Cheese,799,"5 oz beef patty, cheese, sauces",Beef Burgers
+Burger O Clock,210,user_16,0,Beef Old School,799,Classic beef burger with veggies,Beef Burgers
+Burger O Clock,210,user_130,1,Beef Old School,799,Classic beef burger with veggies,Beef Burgers
+Burger O Clock,211,user_215,1,Beef Smoky Tang,849,Beef burger with smoky tang toppings,Beef Burgers
+Burger O Clock,211,user_72,1,Beef Smoky Tang,849,Beef burger with smoky tang toppings,Beef Burgers
+Burger O Clock,212,user_22,1,Beef Belt Buster - Four Patty,1799,Four‑patty beef tower burger,Beef Burgers
+Burger O Clock,212,user_63,1,Beef Belt Buster - Four Patty,1799,Four‑patty beef tower burger,Beef Burgers
+Burger O Clock,213,user_99,1,Beef Belt Buster - Triple Patty,1499,Triple‑patty beef burger,Beef Burgers
+Burger O Clock,213,user_220,1,Beef Belt Buster - Triple Patty,1499,Triple‑patty beef burger,Beef Burgers
+Burger O Clock,214,user_244,1,Crunchos Burger,1049,"Beef or chicken, mozzarella patty, nachos & chipotle mayo",Premium Burger
+Burger O Clock,214,user_82,1,Crunchos Burger,1049,"Beef or chicken, mozzarella patty, nachos & chipotle mayo",Premium Burger
+Burger O Clock,215,user_77,1,Messy Meat Burger,1049,7 oz cheese‑stuffed beef with nacho cheese & chili,Premium Burger
+Burger O Clock,215,user_139,1,Messy Meat Burger,1049,7 oz cheese‑stuffed beef with nacho cheese & chili,Premium Burger
+Burger O Clock,216,user_195,1,Crispy Chicken Value Burger,649,Crispy chicken value burger,Value Burgers
+Burger O Clock,216,user_239,1,Crispy Chicken Value Burger,649,Crispy chicken value burger,Value Burgers
+Burger O Clock,217,user_216,1,Fiery Chicken Value Burger,649,Spicy crispy chicken value burger,Value Burgers
+Burger O Clock,217,user_106,1,Fiery Chicken Value Burger,649,Spicy crispy chicken value burger,Value Burgers
+Burger O Clock,218,user_45,1,Smoky BBQ Value Burger,649,Smoky BBQ chicken value burger,Value Burgers
+Burger O Clock,218,user_62,1,Smoky BBQ Value Burger,649,Smoky BBQ chicken value burger,Value Burgers
+Burger O Clock,219,user_103,1,Jalapeno Crispy Value Burger,649,Crispy chicken with jalapeños,Value Burgers
+Burger O Clock,219,user_83,1,Jalapeno Crispy Value Burger,649,Crispy chicken with jalapeños,Value Burgers
+Burger O Clock,220,user_117,0,Beef Sliders,1799,4 beef sliders + gourmet fries + 2 drinks,Sliders - Party In A Box
+Burger O Clock,220,user_142,0,Beef Sliders,1799,4 beef sliders + gourmet fries + 2 drinks,Sliders - Party In A Box
+Burger O Clock,221,user_149,0,Chicken Sliders,1599,4 chicken sliders + gourmet fries + 2 drinks,Sliders - Party In A Box
+Burger O Clock,221,user_11,1,Chicken Sliders,1599,4 chicken sliders + gourmet fries + 2 drinks,Sliders - Party In A Box
+Burger O Clock,222,user_190,1,Party Box,2899,6 sliders + gourmet fries + appetizer + 3 drinks,Sliders - Party In A Box
+Burger O Clock,222,user_112,0,Party Box,2899,6 sliders + gourmet fries + appetizer + 3 drinks,Sliders - Party In A Box
+Burger O Clock,223,user_10,0,Creamy Wrap,649,Crispy chicken chunks with creamy sauce wrap,Grab The Wraps
+Burger O Clock,223,user_224,1,Creamy Wrap,649,Crispy chicken chunks with creamy sauce wrap,Grab The Wraps
+Burger O Clock,224,user_76,0,Fiery Wrap,649,Crispy chicken chunks & jalapeños in spicy sauce wrap,Grab The Wraps
+Burger O Clock,224,user_90,0,Fiery Wrap,649,Crispy chicken chunks & jalapeños in spicy sauce wrap,Grab The Wraps
+Burger O Clock,225,user_128,1,Smoky Wrap,649,Chicken chunks in smoky BBQ wrap,Grab The Wraps
+Burger O Clock,225,user_183,1,Smoky Wrap,649,Chicken chunks in smoky BBQ wrap,Grab The Wraps
+Burger O Clock,226,user_201,0,Sriracha Loaded Fries,749,Fries with sriracha sauce & toppings,Loaded Fries
+Burger O Clock,226,user_209,0,Sriracha Loaded Fries,749,Fries with sriracha sauce & toppings,Loaded Fries
+Burger O Clock,227,user_241,1,Cheese Burger Fries,749,Fries loaded with cheeseburger toppings,Loaded Fries
+Burger O Clock,227,user_146,1,Cheese Burger Fries,749,Fries loaded with cheeseburger toppings,Loaded Fries
+Burger O Clock,228,user_195,1,Zesty BBQ Fries,449,Fries with BBQ mayo & chicken pepperoni,Gourmet Fries
+Burger O Clock,228,user_251,1,Zesty BBQ Fries,449,Fries with BBQ mayo & chicken pepperoni,Gourmet Fries
+Burger O Clock,229,user_79,0,Fries,299,Classic french fries,Gourmet Fries
+Burger O Clock,229,user_56,1,Fries,299,Classic french fries,Gourmet Fries
+Burger O Clock,230,user_38,0,Peri Bites,699,5 stuffed peri chili bites,Appetizers
+Burger O Clock,230,user_86,1,Peri Bites,699,5 stuffed peri chili bites,Appetizers
+Burger O Clock,231,user_247,1,Finger Chicken,649,5 crispy chicken fingers,Appetizers
+Burger O Clock,231,user_111,1,Finger Chicken,649,5 crispy chicken fingers,Appetizers
+Burger O Clock,232,user_159,1,Honey Mustard Wings,599,6 wings in honey mustard sauce,Appetizers
+Burger O Clock,232,user_155,0,Honey Mustard Wings,599,6 wings in honey mustard sauce,Appetizers
+Burger O Clock,233,user_95,0,Buffalo Wings,599,6 buffalo wings,Appetizers
+Burger O Clock,233,user_173,1,Buffalo Wings,599,6 buffalo wings,Appetizers
+Burger O Clock,234,user_78,1,Smoky BBQ Wings,599,6 smoky BBQ wings,Appetizers
+Burger O Clock,234,user_9,0,Smoky BBQ Wings,599,6 smoky BBQ wings,Appetizers
+Burger O Clock,235,user_158,1,Crispy Wings,599,Wings in house seasoning,Appetizers
+Burger O Clock,235,user_8,1,Crispy Wings,599,Wings in house seasoning,Appetizers
+Burger O Clock,236,user_220,1,Nuggets,499,6 chicken nuggets,Appetizers
+Burger O Clock,236,user_166,1,Nuggets,499,6 chicken nuggets,Appetizers
+Burger O Clock,237,user_76,1,Kiddy Meal,699,"Chicken burger, fries, juice & toy",Kiddy Meals
+Burger O Clock,237,user_168,0,Kiddy Meal,699,"Chicken burger, fries, juice & toy",Kiddy Meals
+Burger O Clock,238,user_187,1,Nuggets Meal,699,"4 nuggets, fries, juice & toy",Kiddy Meals
+Burger O Clock,238,user_1,1,Nuggets Meal,699,"4 nuggets, fries, juice & toy",Kiddy Meals
+Burger O Clock,239,user_98,1,Coca Cola - 350 ml,129,Cola drink,Beverages
+Burger O Clock,239,user_191,1,Coca Cola - 350 ml,129,Cola drink,Beverages
+Burger O Clock,240,user_47,0,Sprite - 350 ml,129,Lemon‑lime soda,Beverages
+Burger O Clock,240,user_81,1,Sprite - 350 ml,129,Lemon‑lime soda,Beverages
+Burger O Clock,241,user_228,0,Coca Zero - 350 ml,129,Zero sugar cola,Beverages
+Burger O Clock,241,user_135,1,Coca Zero - 350 ml,129,Zero sugar cola,Beverages
+Burger O Clock,242,user_185,1,Fanta - 500 ml,179,Orange soda,Beverages
+Burger O Clock,242,user_2,1,Fanta - 500 ml,179,Orange soda,Beverages
+Burger O Clock,243,user_61,0,Pakola - 300 ml,129,Pakola cream soda,Beverages
+Burger O Clock,243,user_184,1,Pakola - 300 ml,129,Pakola cream soda,Beverages
+Burger O Clock,244,user_194,0,Mineral Water (Pakola),89,Bottled water,Beverages
+Burger O Clock,244,user_211,0,Mineral Water (Pakola),89,Bottled water,Beverages
+Burger Lab,245,user_105,1,Jalapeno Cheese Bites,690,Crispy jalapeño & cheese bites,New Arrival
+Burger Lab,245,user_235,1,Jalapeno Cheese Bites,690,Crispy jalapeño & cheese bites,New Arrival
+Burger Lab,246,user_92,0,Gourmet Fries Regular,355,Fries topped with secret sauces,Big Fry Energy
+Burger Lab,246,user_74,1,Gourmet Fries Regular,355,Fries topped with secret sauces,Big Fry Energy
+Burger Lab,247,user_244,0,Crisp & Crunch,530,Zingster & Fries Medium,Cricket Deals & Discounts
+Burger Lab,247,user_188,0,Crisp & Crunch,530,Zingster & Fries Medium,Cricket Deals & Discounts
+Burger Lab,248,user_18,0,Crunchy Duo Box,2490,"Fire House, Zingster, Gourmet Fries, side & 1 L drink",PSL Share Box
+Burger Lab,248,user_99,1,Crunchy Duo Box,2490,"Fire House, Zingster, Gourmet Fries, side & 1 L drink",PSL Share Box
+Burger Lab,249,user_4,1,Smash Duo Box,2750,"OG Smash, All American, Gourmet Fries, side & 1 L drink",PSL Share Box
+Burger Lab,249,user_18,1,Smash Duo Box,2750,"OG Smash, All American, Gourmet Fries, side & 1 L drink",PSL Share Box
+Burger Lab,250,user_223,1,Zing Party Box,1990,4 × Zingster & Fries,PSL Share Box
+Burger Lab,250,user_95,1,Zing Party Box,1990,4 × Zingster & Fries,PSL Share Box
+Burger Lab,251,user_199,1,OG Smash With Free Drink,850,OG Smash with 345 ml drink,Deals
+Burger Lab,251,user_181,1,OG Smash With Free Drink,850,OG Smash with 345 ml drink,Deals
+Burger Lab,252,user_53,1,Dynamite & Drink,920,Dynamite burger with drink,Deals
+Burger Lab,252,user_177,1,Dynamite & Drink,920,Dynamite burger with drink,Deals
+Burger Lab,253,user_180,0,Pepsi Strong Deal,700,Zingster & Pepsi 345 ml,Pepsi Strong Deals
+Burger Lab,253,user_147,1,Pepsi Strong Deal,700,Zingster & Pepsi 345 ml,Pepsi Strong Deals
+Burger Lab,254,user_77,1,Chilli Tomatina,1190,"Smashed beef, gooey mozzarella, beef chilli & tomatina sauce",Beef Burgers
+Burger Lab,254,user_73,1,Chilli Tomatina,1190,"Smashed beef, gooey mozzarella, beef chilli & tomatina sauce",Beef Burgers
+Burger Lab,255,user_170,1,Smoooky Burger,890,"Smashed beef, Animal sauce, crispy onions & BBQ",Beef Burgers
+Burger Lab,255,user_101,0,Smoooky Burger,890,"Smashed beef, Animal sauce, crispy onions & BBQ",Beef Burgers
+Burger Lab,256,user_59,1,The OG Smash,850,Classic smashed beef with cheddar & secret sauce,Beef Burgers
+Burger Lab,256,user_80,0,The OG Smash,850,Classic smashed beef with cheddar & secret sauce,Beef Burgers
+Burger Lab,257,user_90,0,All American,850,"Smashed beef, caramelised onions, cheddar & pickles",Beef Burgers
+Burger Lab,257,user_13,1,All American,850,"Smashed beef, caramelised onions, cheddar & pickles",Beef Burgers
+Burger Lab,258,user_10,1,Chicken Tomatina,1190,"Fried chick fillet, mozzarella, beef chilli & tomatina",Chicken Sandos
+Burger Lab,258,user_237,1,Chicken Tomatina,1190,"Fried chick fillet, mozzarella, beef chilli & tomatina",Chicken Sandos
+Burger Lab,259,user_131,0,Fire House,820,Crispy thigh with buffalo sauce & fiery mayo,Chicken Sandos
+Burger Lab,259,user_156,1,Fire House,820,Crispy thigh with buffalo sauce & fiery mayo,Chicken Sandos
+Burger Lab,260,user_142,1,Nashthrill,750,Hot Nashville-style chicken fillet burger,Chicken Sandos
+Burger Lab,260,user_50,0,Nashthrill,750,Hot Nashville-style chicken fillet burger,Chicken Sandos
+Burger Lab,261,user_163,1,Dynamite,750,"Crispy chicken with tortillas, jalapeños & special sauce",Chicken Sandos
+Burger Lab,261,user_39,0,Dynamite,750,"Crispy chicken with tortillas, jalapeños & special sauce",Chicken Sandos
+Burger Lab,262,user_173,1,Chick-Fil-A,690,"Fried chicken breast, secret sauce & pickles",Chicken Sandos
+Burger Lab,262,user_75,0,Chick-Fil-A,690,"Fried chicken breast, secret sauce & pickles",Chicken Sandos
+Burger Lab,263,user_233,1,Zingster,590,"Crispy thigh, lettuce & zingster sauce",Chicken Sandos
+Burger Lab,263,user_211,1,Zingster,590,"Crispy thigh, lettuce & zingster sauce",Chicken Sandos
+Burger Lab,264,user_197,1,Big Bang,990,"Beef, pepperoni, onion rings & hot sauces",Blast From The Past Burgers
+Burger Lab,264,user_121,1,Big Bang,990,"Beef, pepperoni, onion rings & hot sauces",Blast From The Past Burgers
+Burger Lab,265,user_1,1,Doppler,1050,"Double crispy chicken, cheese & chili garlic",Blast From The Past Burgers
+Burger Lab,265,user_58,0,Doppler,1050,"Double crispy chicken, cheese & chili garlic",Blast From The Past Burgers
+Burger Lab,266,user_169,1,Nuker,1000,"Crispy chicken, fried cheese patty, fries & sauce",Blast From The Past Burgers
+Burger Lab,266,user_178,1,Nuker,1000,"Crispy chicken, fried cheese patty, fries & sauce",Blast From The Past Burgers
+Burger Lab,267,user_155,0,Korean,850,Crispy chicken in Korean sauce & coleslaw,Blast From The Past Burgers
+Burger Lab,267,user_33,1,Korean,850,Crispy chicken in Korean sauce & coleslaw,Blast From The Past Burgers
+Burger Lab,268,user_3,0,Chicago Fries,850,"Cheesy fries, chunky chicken & pepperoni",Fries
+Burger Lab,268,user_176,1,Chicago Fries,850,"Cheesy fries, chunky chicken & pepperoni",Fries
+Burger Lab,269,user_120,1,Chilli Tomatina Fries,1090,Cheesy fries with beef chilli lava,Fries
+Burger Lab,269,user_115,0,Chilli Tomatina Fries,1090,Cheesy fries with beef chilli lava,Fries
+Burger Lab,270,user_63,1,Animal Fries,800,"Cheesy fries, chicken, fiery sauce & onions",Fries
+Burger Lab,270,user_184,1,Animal Fries,800,"Cheesy fries, chicken, fiery sauce & onions",Fries
+Burger Lab,271,user_236,1,Gourmet Fries,590,Fries topped with secret sauces,Fries
+Burger Lab,271,user_90,1,Gourmet Fries,590,Fries topped with secret sauces,Fries
+Burger Lab,272,user_56,0,Nuggets & Fries,590,Tempura nuggets (5 pcs) with fries,Fries
+Burger Lab,272,user_4,1,Nuggets & Fries,590,Tempura nuggets (5 pcs) with fries,Fries
+Burger Lab,273,user_233,1,Fries,250,Fresh‑cut plain fries,Fries
+Burger Lab,273,user_235,1,Fries,250,Fresh‑cut plain fries,Fries
+Burger Lab,274,user_34,0,Fire House Wrap,670,"Fried chicken tenders, lettuce, pickles & fiery hot sauce",Tortillas Wraps
+Burger Lab,274,user_101,1,Fire House Wrap,670,"Fried chicken tenders, lettuce, pickles & fiery hot sauce",Tortillas Wraps
+Burger Lab,275,user_26,0,Nashthrill Wrap,670,"Crispy tenders, pickles & Fiery Hot Pro Max sauce",Tortillas Wraps
+Burger Lab,275,user_177,1,Nashthrill Wrap,670,"Crispy tenders, pickles & Fiery Hot Pro Max sauce",Tortillas Wraps
+Burger Lab,276,user_112,1,Chilli Tomatina Combo,1680,"Burger, fries & drink",Combo Meals
+Burger Lab,276,user_82,1,Chilli Tomatina Combo,1680,"Burger, fries & drink",Combo Meals
+Burger Lab,277,user_149,0,Smoooky Single Combo,1380,"Burger, fries & drink",Combo Meals
+Burger Lab,277,user_147,1,Smoooky Single Combo,1380,"Burger, fries & drink",Combo Meals
+Burger Lab,278,user_44,1,Smoooky Double Combo,1680,"Double burger, fries & drink",Combo Meals
+Burger Lab,278,user_233,1,Smoooky Double Combo,1680,"Double burger, fries & drink",Combo Meals
+Burger Lab,279,user_178,1,The OG Smash Single Combo,1340,Single burger combo,Combo Meals
+Burger Lab,279,user_107,1,The OG Smash Single Combo,1340,Single burger combo,Combo Meals
+Burger Lab,280,user_83,0,The OG Smash Double Combo,1640,Double burger combo,Combo Meals
+Burger Lab,280,user_128,1,The OG Smash Double Combo,1640,Double burger combo,Combo Meals
+Burger Lab,281,user_200,1,All American Single Combo,1340,Single All American combo,Combo Meals
+Burger Lab,281,user_110,1,All American Single Combo,1340,Single All American combo,Combo Meals
+Burger Lab,282,user_110,0,All American Double Combo,1640,Double All American combo,Combo Meals
+Burger Lab,282,user_39,1,All American Double Combo,1640,Double All American combo,Combo Meals
+Burger Lab,283,user_129,1,Chicken Tomatina Combo,1680,Chicken Tomatina burger combo,Combo Meals
+Burger Lab,283,user_68,1,Chicken Tomatina Combo,1680,Chicken Tomatina burger combo,Combo Meals
+Burger Lab,284,user_154,1,Fire House Combo,1310,Fire House burger combo,Combo Meals
+Burger Lab,284,user_3,1,Fire House Combo,1310,Fire House burger combo,Combo Meals
+Burger Lab,285,user_67,1,Nashthrill Combo,1240,Nashthrill burger combo,Combo Meals
+Burger Lab,285,user_200,0,Nashthrill Combo,1240,Nashthrill burger combo,Combo Meals
+Burger Lab,286,user_203,1,Chick-Fil-A Combo Meal,1180,Chick‑Fil‑A burger combo,Combo Meals
+Burger Lab,286,user_74,1,Chick-Fil-A Combo Meal,1180,Chick‑Fil‑A burger combo,Combo Meals
+Burger Lab,287,user_250,1,Zingster Combo Meal,1080,Zingster burger combo,Combo Meals
+Burger Lab,287,user_25,1,Zingster Combo Meal,1080,Zingster burger combo,Combo Meals
+Burger Lab,288,user_229,1,Family Meal 1,3950,"2 OG Smash, 2 Chick-Fil-A, Animal Fries L, 1 L drink",Family Meal
+Burger Lab,288,user_147,1,Family Meal 1,3950,"2 OG Smash, 2 Chick-Fil-A, Animal Fries L, 1 L drink",Family Meal
+Burger Lab,289,user_179,1,Family Meal 2,2990,"4 Zingster, Large Fries, 1 L drink",Family Meal
+Burger Lab,289,user_64,0,Family Meal 2,2990,"4 Zingster, Large Fries, 1 L drink",Family Meal
+Burger Lab,290,user_10,1,Family Meal 3,3150,"2 Fire House Wrap, 2 Nashthrill Wrap, Large Fries, 1 L drink",Family Meal
+Burger Lab,290,user_134,0,Family Meal 3,3150,"2 Fire House Wrap, 2 Nashthrill Wrap, Large Fries, 1 L drink",Family Meal
+Burger Lab,291,user_52,1,Crispy Chicken Tenders Meal,990,"Tenders, fries, bun, coleslaw & dip",Chicken Tender Meals
+Burger Lab,291,user_205,1,Crispy Chicken Tenders Meal,990,"Tenders, fries, bun, coleslaw & dip",Chicken Tender Meals
+Burger Lab,292,user_59,1,Korean Tenders Meal,1050,Korean-marinated tenders meal,Chicken Tender Meals
+Burger Lab,292,user_186,1,Korean Tenders Meal,1050,Korean-marinated tenders meal,Chicken Tender Meals
+Burger Lab,293,user_167,1,Nashthrill Tenders Meal,1090,Nashville tenders meal with chili oil,Chicken Tender Meals
+Burger Lab,293,user_22,1,Nashthrill Tenders Meal,1090,Nashville tenders meal with chili oil,Chicken Tender Meals
+Burger Lab,294,user_64,1,Chicken Tenders,600,Three flavored chicken tenders,Chicken Tenders
+Burger Lab,294,user_103,1,Chicken Tenders,600,Three flavored chicken tenders,Chicken Tenders
+Burger Lab,295,user_105,0,Peanut Butter Shake (Premium),550,"Vanilla ice cream, peanut butter & caramel",Shakes & Iced Tea
+Burger Lab,295,user_193,1,Peanut Butter Shake (Premium),550,"Vanilla ice cream, peanut butter & caramel",Shakes & Iced Tea
+Burger Lab,296,user_226,1,Lotus Dream Shake (Premium),550,Vanilla ice cream & Lotus Biscoff,Shakes & Iced Tea
+Burger Lab,296,user_22,0,Lotus Dream Shake (Premium),550,Vanilla ice cream & Lotus Biscoff,Shakes & Iced Tea
+Burger Lab,297,user_38,0,Choco Oreo,500,Ice‑cream shake with Oreo & chocolate,Shakes & Iced Tea
+Burger Lab,297,user_59,0,Choco Oreo,500,Ice‑cream shake with Oreo & chocolate,Shakes & Iced Tea
+Burger Lab,298,user_96,1,Chocolate Shake,500,Rich chocolate ice‑cream shake,Shakes & Iced Tea
+Burger Lab,298,user_187,0,Chocolate Shake,500,Rich chocolate ice‑cream shake,Shakes & Iced Tea
+Burger Lab,299,user_24,1,Cookies & Cream Oreo,500,Ice‑cream shake with Oreo cookies,Shakes & Iced Tea
+Burger Lab,299,user_75,1,Cookies & Cream Oreo,500,Ice‑cream shake with Oreo cookies,Shakes & Iced Tea
+Burger Lab,300,user_110,1,Peach Iced Tea,220,Refreshing peach iced tea,Shakes & Iced Tea
+Burger Lab,300,user_73,0,Peach Iced Tea,220,Refreshing peach iced tea,Shakes & Iced Tea
+Burger Lab,301,user_251,1,Soft Drinks 345ml,170,Carbonated drinks,Beverages
+Burger Lab,301,user_26,1,Soft Drinks 345ml,170,Carbonated drinks,Beverages
+Burger Lab,302,user_250,1,Water,90,Bottled water,Beverages
+Burger Lab,302,user_91,1,Water,90,Bottled water,Beverages
+Burger Lab,303,user_38,1,Kadak Chai,190,Strong spiced tea,Hot Beverages
+Burger Lab,303,user_15,1,Kadak Chai,190,Strong spiced tea,Hot Beverages
+Karachi Broast,304,user_193,1,Burger ON,2400,"2 Broasted Stacker, 2 Broasted Burger & 1 L drink",Super Deals
+Karachi Broast,304,user_65,1,Burger ON,2400,"2 Broasted Stacker, 2 Broasted Burger & 1 L drink",Super Deals
+Karachi Broast,305,user_135,1,Bun For 2,1105,2 Broasted Burgers & 2 × 345 ml drinks,Super Deals
+Karachi Broast,305,user_186,1,Bun For 2,1105,2 Broasted Burgers & 2 × 345 ml drinks,Super Deals
+Karachi Broast,306,user_202,1,House Full,1925,"2 Broasted Burgers, 1 Wings, 1 Gyro, 1 Hotshot & 1 L drink",Super Deals
+Karachi Broast,306,user_22,1,House Full,1925,"2 Broasted Burgers, 1 Wings, 1 Gyro, 1 Hotshot & 1 L drink",Super Deals
+Karachi Broast,307,user_171,0,Burger Mania,1275,"1 Broasted Stacker, 1 Broasted Burger & 2 Drinks",Super Deals
+Karachi Broast,307,user_244,1,Burger Mania,1275,"1 Broasted Stacker, 1 Broasted Burger & 2 Drinks",Super Deals
+Karachi Broast,308,user_230,1,Fun For 2,1235,"2 Quarter Broast, Fries & 2 × 345 ml drinks",Super Deals
+Karachi Broast,308,user_114,1,Fun For 2,1235,"2 Quarter Broast, Fries & 2 × 345 ml drinks",Super Deals
+Karachi Broast,309,user_171,0,Fun For 4,2485,Full Broast & 1 L drink,Exclusive Discounted Deals
+Karachi Broast,309,user_197,1,Fun For 4,2485,Full Broast & 1 L drink,Exclusive Discounted Deals
+Karachi Broast,310,user_164,0,Broast – Quarter,650,"2‑piece broasted chicken with fries, bun & 2 sauces",Broast
+Karachi Broast,310,user_241,1,Broast – Quarter,650,"2‑piece broasted chicken with fries, bun & 2 sauces",Broast
+Karachi Broast,311,user_206,0,Broast – Half,1300,"4‑piece broast with fries, 2 buns & 4 sauces",Broast
+Karachi Broast,311,user_241,1,Broast – Half,1300,"4‑piece broast with fries, 2 buns & 4 sauces",Broast
+Karachi Broast,312,user_23,0,Broast – Full,2600,"8‑piece broast with fries, 4 buns & 8 sauces",Broast
+Karachi Broast,312,user_250,0,Broast – Full,2600,"8‑piece broast with fries, 4 buns & 8 sauces",Broast
+Karachi Broast,313,user_42,0,Spicy Broast (Quarter),695,2‑piece spice‑injected broast with bun & fries,Broast
+Karachi Broast,313,user_186,0,Spicy Broast (Quarter),695,2‑piece spice‑injected broast with bun & fries,Broast
+Karachi Broast,314,user_169,1,Spicy Broast (Half),1390,4‑piece spicy broast with bun & fries,Broast
+Karachi Broast,314,user_15,1,Spicy Broast (Half),1390,4‑piece spicy broast with bun & fries,Broast
+Karachi Broast,315,user_114,1,Value Chicken Burger,375,"Fried breast fillet, garlic mayo & lettuce",Burgers
+Karachi Broast,315,user_57,0,Value Chicken Burger,375,"Fried breast fillet, garlic mayo & lettuce",Burgers
+Karachi Broast,316,user_129,0,Broasted Burger,595,100 g broasted thigh fillet burger,Burgers
+Karachi Broast,316,user_66,0,Broasted Burger,595,100 g broasted thigh fillet burger,Burgers
+Karachi Broast,317,user_228,0,Spicy Chicken Burger,645,Grilled tender breast in buffalo sauce,Burgers
+Karachi Broast,317,user_226,0,Spicy Chicken Burger,645,Grilled tender breast in buffalo sauce,Burgers
+Karachi Broast,318,user_35,1,Broasted Stacker,825,"Double broasted thigh fillet, cheese & sauce",Stackers
+Karachi Broast,318,user_216,0,Broasted Stacker,825,"Double broasted thigh fillet, cheese & sauce",Stackers
+Karachi Broast,319,user_196,1,Garlic Gyro,325,Crispy hotshots in pita with garlic mayo & veggies,Gyros
+Karachi Broast,319,user_141,1,Garlic Gyro,325,Crispy hotshots in pita with garlic mayo & veggies,Gyros
+Karachi Broast,320,user_13,1,Classic Gyro,315,Crispy hotshots in pita with sauce & veggies,Gyros
+Karachi Broast,320,user_102,1,Classic Gyro,315,Crispy hotshots in pita with sauce & veggies,Gyros
+Karachi Broast,321,user_127,1,Bucket Fries,350,150 g fresh‑cut fries,Side Orders
+Karachi Broast,321,user_125,0,Bucket Fries,350,150 g fresh‑cut fries,Side Orders
+Karachi Broast,322,user_142,1,Wings,545,Broasted chicken wings (serves 1),Side Orders
+Karachi Broast,322,user_236,1,Wings,545,Broasted chicken wings (serves 1),Side Orders
+Karachi Broast,323,user_225,1,Regular Fries,250,100 g fresh‑cut fries,Side Orders
+Karachi Broast,323,user_182,1,Regular Fries,250,100 g fresh‑cut fries,Side Orders
+Karachi Broast,324,user_66,1,Flavored Fries,425,150 g fries topped with choice of sauces,Side Orders
+Karachi Broast,324,user_4,1,Flavored Fries,425,150 g fries topped with choice of sauces,Side Orders
+Karachi Broast,325,user_37,0,Hotshots,425,9‑pc crunchy chicken hotshots,Side Orders
+Karachi Broast,325,user_186,0,Hotshots,425,9‑pc crunchy chicken hotshots,Side Orders
+Karachi Broast,326,user_65,1,Nuggets (6 pcs),425,Tender crispy nuggets,Side Orders
+Karachi Broast,326,user_75,1,Nuggets (6 pcs),425,Tender crispy nuggets,Side Orders
+Karachi Broast,327,user_95,0,Nuggets Bucket,375,Bucket of chicken nuggets,Side Orders
+Karachi Broast,327,user_227,0,Nuggets Bucket,375,Bucket of chicken nuggets,Side Orders
+Karachi Broast,328,user_58,1,Garlic Mayo Dip,75,Creamy garlic mayo dip,Extras
+Karachi Broast,328,user_113,0,Garlic Mayo Dip,75,Creamy garlic mayo dip,Extras
+Karachi Broast,329,user_84,1,Saucy Dip,75,Rich savoury dip,Extras
+Karachi Broast,329,user_228,0,Saucy Dip,75,Rich savoury dip,Extras
+Karachi Broast,330,user_68,1,Red Sauce,75,Garlic & red chilli sauce,Extras
+Karachi Broast,330,user_149,1,Red Sauce,75,Garlic & red chilli sauce,Extras
+Karachi Broast,331,user_175,1,Mustard Blast Dip,75,Tangy mustard sauce,Extras
+Karachi Broast,331,user_155,1,Mustard Blast Dip,75,Tangy mustard sauce,Extras
+Karachi Broast,332,user_60,1,B.B.Q Dip,75,Smoky barbecue dip,Extras
+Karachi Broast,332,user_76,1,B.B.Q Dip,75,Smoky barbecue dip,Extras
+Karachi Broast,333,user_92,0,Aquafina Water – 500 ml,90,Bottled water,Beverages
+Karachi Broast,333,user_112,0,Aquafina Water – 500 ml,90,Bottled water,Beverages
+Karachi Broast,334,user_2,1,7up – 1 L,175,Lemon‑lime soda,Beverages
+Karachi Broast,334,user_15,1,7up – 1 L,175,Lemon‑lime soda,Beverages
+Karachi Broast,335,user_174,0,Pepsi – 1 L,175,Cola,Beverages
+Karachi Broast,335,user_128,1,Pepsi – 1 L,175,Cola,Beverages
+Karachi Broast,336,user_80,1,Mirinda – 1 L,175,Orange soda,Beverages
+Karachi Broast,336,user_38,1,Mirinda – 1 L,175,Orange soda,Beverages
+Karachi Broast,337,user_122,1,Pepsi – 345 ml,120,Cola,Beverages
+Karachi Broast,337,user_179,1,Pepsi – 345 ml,120,Cola,Beverages
+Karachi Broast,338,user_42,1,Mirinda – 345 ml,120,Orange soda,Beverages
+Karachi Broast,338,user_171,1,Mirinda – 345 ml,120,Orange soda,Beverages
+Karachi Broast,339,user_36,1,7up – 345 ml,120,Lemon‑lime soda,Beverages
+Karachi Broast,339,user_97,1,7up – 345 ml,120,Lemon‑lime soda,Beverages
+Karachi Broast,340,user_28,0,Slice – 355 ml,75,Mango drink,Beverages
+Karachi Broast,340,user_13,1,Slice – 355 ml,75,Mango drink,Beverages
+Karachi Broast,341,user_71,1,Diet Drink – 345 ml,120,Diet cola,Beverages
+Karachi Broast,341,user_208,1,Diet Drink – 345 ml,120,Diet cola,Beverages
+Karachi Haleem,342,user_107,0,Chicken Haleem,285,Slow‑cooked chicken haleem with wheat & spices (single),Haleem
+Karachi Haleem,342,user_3,0,Chicken Haleem,285,Slow‑cooked chicken haleem with wheat & spices (single),Haleem
+Karachi Haleem,343,user_186,1,Beef Haleem,285,Slow‑cooked beef haleem with wheat & spices (single),Haleem
+Karachi Haleem,343,user_3,1,Beef Haleem,285,Slow‑cooked beef haleem with wheat & spices (single),Haleem
+Karachi Haleem,344,user_76,1,Extra Haleem Masala,50,Special masala sachet to add extra flavour,Haleem
+Karachi Haleem,344,user_115,0,Extra Haleem Masala,50,Special masala sachet to add extra flavour,Haleem
+Karachi Haleem,345,user_178,1,Chicken Biryani,440,Aromatic rice with marinated chicken (single size from),Biryani & Pulao
+Karachi Haleem,345,user_197,1,Chicken Biryani,440,Aromatic rice with marinated chicken (single size from),Biryani & Pulao
+Karachi Haleem,346,user_137,0,Beef Biryani,585,Traditional beef biryani (single size from),Biryani & Pulao
+Karachi Haleem,346,user_102,1,Beef Biryani,585,Traditional beef biryani (single size from),Biryani & Pulao
+Karachi Haleem,347,user_22,1,Chicken Pulao,440,Fragrant chicken pulao rice (single),Biryani & Pulao
+Karachi Haleem,347,user_4,1,Chicken Pulao,440,Fragrant chicken pulao rice (single),Biryani & Pulao
+Karachi Haleem,348,user_84,1,Beef Shami Kebab,130,Fried beef shami kebab (each),Biryani & Pulao
+Karachi Haleem,348,user_104,1,Beef Shami Kebab,130,Fried beef shami kebab (each),Biryani & Pulao
+Karachi Haleem,349,user_165,1,Beef Haleem (Tin),910,Ready‑to‑eat canned beef haleem,Tinpack Foods
+Karachi Haleem,349,user_202,1,Beef Haleem (Tin),910,Ready‑to‑eat canned beef haleem,Tinpack Foods
+Karachi Haleem,350,user_204,1,Chicken Haleem (Tin),910,Ready‑to‑eat canned chicken haleem,Tinpack Foods
+Karachi Haleem,350,user_158,1,Chicken Haleem (Tin),910,Ready‑to‑eat canned chicken haleem,Tinpack Foods
+Karachi Haleem,351,user_51,0,Beef Nihari (Tin),975,Canned beef nihari stew,Tinpack Foods
+Karachi Haleem,351,user_237,1,Beef Nihari (Tin),975,Canned beef nihari stew,Tinpack Foods
+Karachi Haleem,352,user_148,0,Beef Kofta (Tin),975,Canned beef kofta curry,Tinpack Foods
+Karachi Haleem,352,user_193,1,Beef Kofta (Tin),975,Canned beef kofta curry,Tinpack Foods
+Karachi Haleem,353,user_38,0,Beef Paya (Tin),975,Canned beef trotters paya,Tinpack Foods
+Karachi Haleem,353,user_177,1,Beef Paya (Tin),975,Canned beef trotters paya,Tinpack Foods
+Karachi Haleem,354,user_183,1,Beef Qorma (Tin),975,Canned beef qorma gravy,Tinpack Foods
+Karachi Haleem,354,user_157,0,Beef Qorma (Tin),975,Canned beef qorma gravy,Tinpack Foods
+Karachi Haleem,355,user_135,1,Beef Haleem Family Tin,1515,Family‑size canned beef haleem,Tinpack Foods
+Karachi Haleem,355,user_94,0,Beef Haleem Family Tin,1515,Family‑size canned beef haleem,Tinpack Foods
+Karachi Haleem,356,user_222,1,Alu Qeema (Tin),975,Canned potato & mince curry,Tinpack Foods
+Karachi Haleem,356,user_52,0,Alu Qeema (Tin),975,Canned potato & mince curry,Tinpack Foods
+Karachi Haleem,357,user_119,1,Chicken Biryani (Tin),910,Canned chicken biryani,Tinpack Foods
+Karachi Haleem,357,user_89,1,Chicken Biryani (Tin),910,Canned chicken biryani,Tinpack Foods
+Karachi Haleem,358,user_90,1,Shami Kabab (Tin),975,Canned shami kebabs,Tinpack Foods
+Karachi Haleem,358,user_27,0,Shami Kabab (Tin),975,Canned shami kebabs,Tinpack Foods
+Javed Nihari,359,user_27,1,Plain Nihari (Single),550,"Slow‑cooked beef gravy (single serving, no toppings)",Nihari Classics
+Javed Nihari,359,user_31,1,Plain Nihari (Single),550,"Slow‑cooked beef gravy (single serving, no toppings)",Nihari Classics
+Javed Nihari,360,user_165,1,Chicken Nihari (Single),520,Traditional nihari simmered with chicken instead of beef,Nihari Classics
+Javed Nihari,360,user_149,0,Chicken Nihari (Single),520,Traditional nihari simmered with chicken instead of beef,Nihari Classics
+Javed Nihari,361,user_27,1,Nalli Nihari,690,Beef nihari enriched with a marrow bone (nalli),Nihari Classics
+Javed Nihari,361,user_102,1,Nalli Nihari,690,Beef nihari enriched with a marrow bone (nalli),Nihari Classics
+Javed Nihari,362,user_86,1,Maghaz Nihari,760,Beef nihari topped with brain (maghaz),Nihari Classics
+Javed Nihari,362,user_241,1,Maghaz Nihari,760,Beef nihari topped with brain (maghaz),Nihari Classics
+Javed Nihari,363,user_94,1,Special Nihari (Maghaz + Nalli),880,Signature bowl with both maghaz & marrow bone,Nihari Classics
+Javed Nihari,363,user_115,1,Special Nihari (Maghaz + Nalli),880,Signature bowl with both maghaz & marrow bone,Nihari Classics
+Javed Nihari,364,user_231,0,Family Nihari Half‑Kg,1350,"Half‑kilo nihari gravy, serves 3–4",Nihari Classics
+Javed Nihari,364,user_47,1,Family Nihari Half‑Kg,1350,"Half‑kilo nihari gravy, serves 3–4",Nihari Classics
+Javed Nihari,365,user_52,1,Solo Nihari Deal,670,Plain Nihari + Roghni Naan + 345 ml drink,Deals
+Javed Nihari,365,user_144,1,Solo Nihari Deal,670,Plain Nihari + Roghni Naan + 345 ml drink,Deals
+Javed Nihari,366,user_146,1,Family Nihari Deal,2650,½ kg Special Nihari + 4 Naans + 1 L drink,Deals
+Javed Nihari,366,user_208,1,Family Nihari Deal,2650,½ kg Special Nihari + 4 Naans + 1 L drink,Deals
+Javed Nihari,367,user_165,1,Extra Nalli,190,Add one marrow bone to your nihari,Extras
+Javed Nihari,367,user_76,0,Extra Nalli,190,Add one marrow bone to your nihari,Extras
+Javed Nihari,368,user_175,1,Extra Maghaz,240,Add brain topping to any bowl,Extras
+Javed Nihari,368,user_205,1,Extra Maghaz,240,Add brain topping to any bowl,Extras
+Javed Nihari,369,user_231,1,Special Nihari Masala,70,House spice mix sachet,Extras
+Javed Nihari,369,user_39,1,Special Nihari Masala,70,House spice mix sachet,Extras
+Javed Nihari,370,user_35,0,Plain Naan,40,Tandoor‑baked plain naan,Breads
+Javed Nihari,370,user_30,1,Plain Naan,40,Tandoor‑baked plain naan,Breads
+Javed Nihari,371,user_34,0,Roghni Naan,55,Sesame‑topped butter naan,Breads
+Javed Nihari,371,user_232,1,Roghni Naan,55,Sesame‑topped butter naan,Breads
+Javed Nihari,372,user_1,1,Tandoori Paratha,75,Layered paratha cooked in tandoor,Breads
+Javed Nihari,372,user_61,1,Tandoori Paratha,75,Layered paratha cooked in tandoor,Breads
+Javed Nihari,373,user_5,0,Pepsi 345 ml,120,Chilled cola bottle,Beverages
+Javed Nihari,373,user_141,1,Pepsi 345 ml,120,Chilled cola bottle,Beverages
+Javed Nihari,374,user_35,0,7up 345 ml,120,Lemon‑lime soda,Beverages
+Javed Nihari,374,user_112,1,7up 345 ml,120,Lemon‑lime soda,Beverages
+Javed Nihari,375,user_5,1,Mineral Water 500 ml,90,Bottled water,Beverages
+Javed Nihari,375,user_152,1,Mineral Water 500 ml,90,Bottled water,Beverages
+Zahid Nihari,376,user_180,1,Deal 1 (Half Nihari Combo),865,Half Nihari + 3 Roti + 500 ml drink,Combo Deals
+Zahid Nihari,376,user_123,1,Deal 1 (Half Nihari Combo),865,Half Nihari + 3 Roti + 500 ml drink,Combo Deals
+Zahid Nihari,377,user_116,1,Deal 2 (Full Nihari Combo),1710,Full Nihari + 6 Roti + 1.5 L drink,Combo Deals
+Zahid Nihari,377,user_185,1,Deal 2 (Full Nihari Combo),1710,Full Nihari + 6 Roti + 1.5 L drink,Combo Deals
+Zahid Nihari,378,user_67,1,Deal 5 (Maghaz Nihari Half Combo),1250,Maghaz Nihari (half) + 3 Roti + 500 ml drink,Combo Deals
+Zahid Nihari,378,user_214,1,Deal 5 (Maghaz Nihari Half Combo),1250,Maghaz Nihari (half) + 3 Roti + 500 ml drink,Combo Deals
+Zahid Nihari,379,user_86,0,Deal 6 (Maghaz Nihari Full Combo),2095,Maghaz Nihari (full) + 6 Roti + 1.5 L drink,Combo Deals
+Zahid Nihari,379,user_204,1,Deal 6 (Maghaz Nihari Full Combo),2095,Maghaz Nihari (full) + 6 Roti + 1.5 L drink,Combo Deals
+Zahid Nihari,380,user_155,1,Nihari,660,Slow‑cooked beef stew (single),Mains
+Zahid Nihari,380,user_75,1,Nihari,660,Slow‑cooked beef stew (single),Mains
+Zahid Nihari,381,user_229,1,Maghaz Nihari,1045,Nihari topped with brain (Maghaz),Mains
+Zahid Nihari,381,user_147,1,Maghaz Nihari,1045,Nihari topped with brain (Maghaz),Mains
+Zahid Nihari,382,user_137,1,Nalli Nihari,1000,Nihari with marrow bone (Nalli),Mains
+Zahid Nihari,382,user_146,0,Nalli Nihari,1000,Nihari with marrow bone (Nalli),Mains
+Zahid Nihari,383,user_143,1,Special Nihari (Nalli + Maghaz),1450,House special with both Nalli & Maghaz,Mains
+Zahid Nihari,383,user_230,1,Special Nihari (Nalli + Maghaz),1450,House special with both Nalli & Maghaz,Mains
+Zahid Nihari,384,user_192,0,Nihari Tin Pack,1800,Ready‑to‑eat canned Nihari (approx. 1 kg),Mains
+Zahid Nihari,384,user_29,1,Nihari Tin Pack,1800,Ready‑to‑eat canned Nihari (approx. 1 kg),Mains
+Zahid Nihari,385,user_25,0,Roti,30,Fresh tandoor‑baked roti,Tandoor
+Zahid Nihari,385,user_117,1,Roti,30,Fresh tandoor‑baked roti,Tandoor
+Zahid Nihari,386,user_147,1,Sheermal,90,Sweet milk bread from tandoor,Tandoor
+Zahid Nihari,386,user_249,0,Sheermal,90,Sweet milk bread from tandoor,Tandoor
+Zahid Nihari,387,user_146,1,Aquafina Water 1.5 L,140,Bottled water 1.5 L,Beverages
+Zahid Nihari,387,user_56,0,Aquafina Water 1.5 L,140,Bottled water 1.5 L,Beverages
+Zahid Nihari,388,user_177,1,Aquafina Water 500 ml,70,Bottled water 500 ml,Beverages
+Zahid Nihari,388,user_198,0,Aquafina Water 500 ml,70,Bottled water 500 ml,Beverages
+Zahid Nihari,389,user_63,1,Pepsi 500 ml,135,Chilled cola bottle 500 ml,Beverages
+Zahid Nihari,389,user_4,1,Pepsi 500 ml,135,Chilled cola bottle 500 ml,Beverages
+Zahid Nihari,390,user_164,1,7up 500 ml,135,Lemon‑lime soda 500 ml,Beverages
+Zahid Nihari,390,user_136,0,7up 500 ml,135,Lemon‑lime soda 500 ml,Beverages
+Zahid Nihari,391,user_47,0,Mountain Dew 500 ml,135,Citrus soda 500 ml,Beverages
+Zahid Nihari,391,user_115,1,Mountain Dew 500 ml,135,Citrus soda 500 ml,Beverages
+Zahid Nihari,392,user_174,0,Pepsi 1.5 L,250,Cola 1.5 L,Beverages
+Zahid Nihari,392,user_244,1,Pepsi 1.5 L,250,Cola 1.5 L,Beverages
+Zahid Nihari,393,user_135,1,7up 1.5 L,250,Lemon‑lime soda 1.5 L,Beverages
+Zahid Nihari,393,user_132,1,7up 1.5 L,250,Lemon‑lime soda 1.5 L,Beverages
+Zahid Nihari,394,user_52,1,Pepsi 2.25 L,330,Cola 2.25 L,Beverages
+Zahid Nihari,394,user_87,1,Pepsi 2.25 L,330,Cola 2.25 L,Beverages
+Zahid Nihari,395,user_230,1,7up 2.25 L,330,Lemon‑lime soda 2.25 L,Beverages
+Zahid Nihari,395,user_235,0,7up 2.25 L,330,Lemon‑lime soda 2.25 L,Beverages
+Zahid Nihari,396,user_181,1,Mountain Dew 2.25 L,330,Citrus soda 2.25 L,Beverages
+Zahid Nihari,396,user_51,1,Mountain Dew 2.25 L,330,Citrus soda 2.25 L,Beverages
+Zahid Nihari,397,user_39,1,Pepsi Can 300 ml,125,Cola can 300 ml,Beverages
+Zahid Nihari,397,user_17,1,Pepsi Can 300 ml,125,Cola can 300 ml,Beverages
+Zahid Nihari,398,user_116,1,Sting 500 ml,140,Energy drink 500 ml,Beverages
+Zahid Nihari,398,user_74,1,Sting 500 ml,140,Energy drink 500 ml,Beverages
+Zahid Nihari,399,user_91,0,Slice Juice 335 ml,100,Mango juice 335 ml,Beverages
+Zahid Nihari,399,user_203,1,Slice Juice 335 ml,100,Mango juice 335 ml,Beverages

@@ -3,11 +3,10 @@ import json
 import logging
 import re
 from contextlib import contextmanager
-from fastapi import FastAPI, HTTPException, Query, Form, Request
-from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException, Query, Form, Request,Body
+from pydantic import BaseModel, ValidationError
 from fastapi.responses import JSONResponse, FileResponse
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import ValidationError
 import mysql.connector
 from dotenv import load_dotenv
 import uvicorn
@@ -17,26 +16,34 @@ from typing import List, Optional
 from langchain_groq import ChatGroq
 import search
 import auth
+import pandas as pd
+import torch
+import torch.nn as nn
+from sklearn.preprocessing import LabelEncoder
+from rapidfuzz import process
 
-load_dotenv()
+# Load environment
+dotenv_loaded = load_dotenv()
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 # Initialize FastAPI application
 app = FastAPI()
 
+# CORS configuration
 origins = [
-    "http://localhost:3000",  
+    "http://localhost:3000",
     "https://ai.myedbox.com",
     "https://logsaga.com",
 ]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Explicitly specify the frontend origin
+    allow_origins=origins,
     allow_credentials=True,
-    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
-    allow_headers=["*"],  # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
+
+# --------------------- Shared Models ---------------------
 class Restaurant(BaseModel):
     restaurant_id: int
     name: str
@@ -61,20 +68,372 @@ class DishOut(BaseModel):
     avg_rating:  Optional[float]
     popularity:  Optional[float]
 
+class RecommendationRequest(BaseModel):
+    liked_restaurants: List[str]
+    liked_dishes:      List[str]
+
+class RestaurantRec(BaseModel):
+    restaurant_id: int
+    name:          str
+    food_type:     str
+
+class DishRec(BaseModel):
+    dish_id:     int
+    Restaurant:  str
+    Item:        str
+    PricePKR:    float
+    Description: str
+
+
+class InteractiveDishOut(BaseModel):
+    dish_id: int
+    Restaurant: str
+    Item: str
+    PricePKR: float
+    Description: Optional[str]
+
+class LikeBranchesRequest(BaseModel):
+    email: str
+    branch_ids: List[int]
+
+class LikeDishesRequest(BaseModel):
+    email: str
+    dish_ids: List[int]
+
+# --------------------- ChatGroq Init ---------------------
 def initialize_chat_model():
     try:
-        chat_groq = ChatGroq(
-            api_key=GROQ_API_KEY,
-            model="llama-3.3-70b-versatile",
-            temperature=0.2,
-        )
-        return chat_groq
+        return ChatGroq(api_key=GROQ_API_KEY,
+                        model="llama-3.3-70b-versatile",
+                        temperature=0.2)
     except Exception as e:
-        raise RuntimeError(f"ChatGroq initialization failed: {e}")
-
-
-
+        raise RuntimeError(f"ChatGroq init failed: {e}")
 llm = initialize_chat_model()
+
+# --------------------- Data & Model Load ---------------------
+# Load full review datasets for encoding
+df_reviews_rest = pd.read_csv("restaurant_final_clean_real_names.csv")
+df_reviews_dish = pd.read_csv("dish_final_clean_real_names.csv")
+
+# Metadata for endpoints
+meta_rest = df_reviews_rest[["restaurant_id","name","food type"]].drop_duplicates()
+name_rest = meta_rest[["restaurant_id","name"]]
+meta_dish = df_reviews_dish[["dish_id","Restaurant","Item","PricePKR","Description"]].drop_duplicates()
+name_dish = meta_dish[["dish_id","Item"]]
+
+# Build label encoders based on review data
+user_enc_rest = LabelEncoder().fit(df_reviews_rest["user_id"])
+item_enc_rest = LabelEncoder().fit(df_reviews_rest["restaurant_id"])
+user_enc_dish = LabelEncoder().fit(df_reviews_dish["user_id"])
+item_enc_dish = LabelEncoder().fit(df_reviews_dish["dish_id"])
+
+# NCF definition for both recommenders
+class NCF(nn.Module):
+    def __init__(self, n_users, n_items, emb_dim=128):
+        super().__init__()
+        self.user_embedding = nn.Embedding(n_users, emb_dim)
+        self.item_embedding = nn.Embedding(n_items, emb_dim)
+        self.fc_layers = nn.Sequential(
+            nn.Linear(emb_dim*2,128), nn.ReLU(),
+            nn.Linear(128,64),  nn.ReLU(), nn.Dropout(0.2),
+            nn.Linear(64,16),   nn.ReLU(), nn.Dropout(0.2),
+            nn.Linear(16,1),    nn.Sigmoid()
+        )
+    def forward(self, u, i):
+        return self.fc_layers(torch.cat([self.user_embedding(u),
+                                  self.item_embedding(i)],1)).squeeze()
+
+# Instantiate and load weights using encoder class sizes
+num_users_rest = len(user_enc_rest.classes_)
+num_items_rest = len(item_enc_rest.classes_)
+model_rest = NCF(num_users_rest, num_items_rest)
+model_rest.load_state_dict(torch.load("best_model_hit60.pth"))
+model_rest.eval()
+
+num_users_dish = len(user_enc_dish.classes_)
+num_items_dish = len(item_enc_dish.classes_)
+model_dish = NCF(num_users_dish, num_items_dish)
+model_dish.load_state_dict(torch.load("best_model_hit60_dish.pth"))
+model_dish.eval()
+
+# Helper: expand embed for new user
+def expand_user_embedding(model):
+    with torch.no_grad():
+        w = model.user_embedding.weight
+        new_w = torch.cat([w, torch.randn(1, w.size(1))], dim=0)
+        model.user_embedding = nn.Embedding.from_pretrained(new_w, freeze=False)
+    return new_w.size(0) - 1
+
+# Fuzzy-match names to IDs
+def fuzzy_match(names: List[str], choices: List[str], ids: List[int], thresh=80) -> List[int]:
+    matched = []
+    for name in names:
+        match, score, _ = process.extractOne(name, choices)
+        if score >= thresh:
+            matched.append(ids[choices.index(match)])
+    return matched
+
+# --------------------- Recommendation Endpoints ---------------------
+@app.post("/recommend/restaurants", response_model=List[RestaurantRec])
+async def recommend_restaurants(
+    email: str = Form(...),
+    liked_restaurants: List[str] = Form(...),
+    liked_dishes: List[str]      = Form(default=[]),
+):
+    req = RecommendationRequest(
+        liked_restaurants=liked_restaurants,
+        liked_dishes=liked_dishes
+    )
+    choices = name_rest['name'].tolist()
+    ids_list = name_rest['restaurant_id'].tolist()
+    liked_ids = fuzzy_match(req.liked_restaurants, choices, ids_list)
+    if not liked_ids:
+        raise HTTPException(status_code=400, detail="No valid restaurant matches.")
+    new_uid = expand_user_embedding(model_rest)
+    all_items = torch.arange(len(item_enc_rest.classes_))
+    users = torch.full_like(all_items, new_uid)
+    with torch.no_grad():
+        scores = model_rest(users, all_items).numpy()
+    mask = item_enc_rest.transform(liked_ids)
+    scores[mask] = -1
+    top_idx = scores.argsort()[-5:][::-1]
+    top_ids = item_enc_rest.inverse_transform(top_idx)
+    recs = meta_rest.set_index('restaurant_id').loc[top_ids].reset_index()
+    recs.rename(columns={'food type':'food_type'}, inplace=True)
+
+    # Persist all 5 picks
+    try:
+        conn = auth.get_direct_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM user_restaurant_recommendations WHERE user_email=%s", (email,))
+        for rank, rid in enumerate(top_ids, start=1):
+            cursor.execute(
+                "INSERT INTO user_restaurant_recommendations"
+                " (user_email, restaurant_id, rec_rank) VALUES (%s,%s,%s)",
+                (email, int(rid), rank)
+            )
+        conn.commit()
+    except Exception as e:
+        logging.error(f"Failed to save restaurant recs: {e}")
+        conn.rollback()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return recs.to_dict('records')
+
+@app.post("/recommend/dishes", response_model=List[DishRec])
+async def recommend_dishes(
+    email: str = Form(...),
+    liked_restaurants: List[str] = Form(default=[]),
+    liked_dishes:      List[str] = Form(...),
+):
+    req = RecommendationRequest(
+        liked_restaurants=liked_restaurants,
+        liked_dishes=liked_dishes
+    )
+    choices = name_dish['Item'].tolist()
+    ids_list = name_dish['dish_id'].tolist()
+    liked_ids = fuzzy_match(req.liked_dishes, choices, ids_list)
+    if not liked_ids:
+        raise HTTPException(status_code=400, detail="No valid dish matches.")
+    new_uid = expand_user_embedding(model_dish)
+    all_items = torch.arange(len(item_enc_dish.classes_))
+    users = torch.full_like(all_items, new_uid)
+    with torch.no_grad():
+        scores = model_dish(users, all_items).numpy()
+    mask = item_enc_dish.transform(liked_ids)
+    scores[mask] = -1
+    top_idx = scores.argsort()[-5:][::-1]
+    top_ids = item_enc_dish.inverse_transform(top_idx)
+    recs = meta_dish.set_index('dish_id').loc[top_ids].reset_index()
+
+    # Persist all 5 picks
+    try:
+        conn = auth.get_direct_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("DELETE FROM user_dish_recommendations WHERE user_email=%s", (email,))
+        for rank, did in enumerate(top_ids, start=1):
+            cursor.execute(
+                "INSERT INTO user_dish_recommendations"
+                " (user_email, dish_id, rec_rank) VALUES (%s,%s,%s)",
+                (email, int(did), rank)
+            )
+        conn.commit()
+    except Exception as e:
+        logging.error(f"Failed to save dish recs: {e}")
+        conn.rollback()
+    finally:
+        cursor.close()
+        conn.close()
+
+    return recs.to_dict('records')
+
+
+# --------------------- Interactive Flow Endpoints ---------------------
+
+# Step 1: List all restaurant branches (use these IDs in the next call)
+@app.get("/interactive/restaurants", response_model=List[Restaurant])
+def list_all_restaurants():
+    """
+    Returns every restaurant branch with its ID and details. Clients should pick three `restaurant_id` values.
+    """
+    conn = auth.get_direct_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(
+        "SELECT restaurant_id, name, location_latitude, location_longitude, cuisine_type, average_rating, location_name FROM recommendar_restaurant"
+    )
+    rows = cursor.fetchall()
+    cursor.close(); conn.close()
+    for r in rows:
+        r["cuisine_type"] = json.loads(r["cuisine_type"])
+    return rows
+
+
+
+@app.post(
+    "/interactive/restaurants/like",
+    response_model=List[InteractiveDishOut],
+)
+def like_branches_and_get_dishes(
+    req: LikeBranchesRequest = Body(...)
+):
+    email      = req.email
+    branch_ids = req.branch_ids
+
+    # --- Persist liked branches with a proper rec_rank ---
+    conn, cursor = auth.get_direct_db_connection(), None
+    try:
+        cursor = conn.cursor()
+        # clear old picks
+        cursor.execute(
+            "DELETE FROM user_restaurant_recommendations WHERE user_email=%s",
+            (email,)
+        )
+        # insert with rec_rank = 1, 2, 3
+        for rank, rid in enumerate(branch_ids, start=1):
+            cursor.execute(
+                """
+                INSERT INTO user_restaurant_recommendations
+                   (user_email, restaurant_id, rec_rank)
+                VALUES (%s,%s,%s)
+                """,
+                (email, rid, rank)
+            )
+        conn.commit()
+    finally:
+        if cursor: cursor.close()
+        conn.close()
+
+    # --- Fetch dishes from those branches (same as before) ---
+    conn, cursor = auth.get_direct_db_connection(), None
+    try:
+        cursor = conn.cursor(dictionary=True)
+        placeholders = ",".join("%s" for _ in branch_ids)
+        sql = f"""
+        SELECT DISTINCT
+           d.dish_id,
+           d.dish_name AS Item,
+           COALESCE(o.price_override, d.price) AS PricePKR,
+           d.description                    AS Description,
+           r.name                           AS Restaurant
+        FROM recommendar_dishoffering o
+        JOIN recommendar_dish d       ON o.dish_id       = d.dish_id
+        JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
+        WHERE o.restaurant_id IN ({placeholders})
+        """
+        cursor.execute(sql, tuple(branch_ids))
+        dishes = cursor.fetchall()
+    finally:
+        if cursor: cursor.close()
+        conn.close()
+
+    return dishes
+
+# Step 3: User selects 3 dish IDs, persist
+
+
+@app.post("/interactive/dishes/like")
+def like_dishes(
+    req: LikeDishesRequest = Body(...)
+):
+    email    = req.email
+    dish_ids = req.dish_ids
+
+    conn, cursor = auth.get_direct_db_connection(), None
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            "DELETE FROM user_dish_recommendations WHERE user_email=%s",
+            (email,)
+        )
+        for rank, did in enumerate(dish_ids, start=1):
+            cursor.execute(
+                """
+                INSERT INTO user_dish_recommendations
+                   (user_email, dish_id, rec_rank)
+                VALUES (%s,%s,%s)
+                """,
+                (email, did, rank)
+            )
+        conn.commit()
+    finally:
+        if cursor: cursor.close()
+        conn.close()
+
+    return {"status": "success"}
+
+from pydantic import BaseModel
+from typing import List
+
+class BrandOut(BaseModel):
+    name: str
+
+@app.get("/interactive/restaurant-brands", response_model=List[BrandOut])
+def list_brands():
+    """
+    Return each restaurant brand _once_ (no branches).
+    Clients pick 3 brand names from this list.
+    """
+    conn    = auth.get_direct_db_connection()
+    cursor  = conn.cursor()
+    cursor.execute("SELECT DISTINCT name FROM recommendar_restaurant")
+    names = [row[0] for row in cursor.fetchall()]
+    cursor.close(); conn.close()
+    return [{"name": n} for n in names]
+
+class BrandListRequest(BaseModel):
+    brand_names: List[str]
+
+@app.post(
+    "/interactive/restaurant-branches",
+    response_model=List[Restaurant],
+)
+def list_branches_by_brand(req: BrandListRequest):
+    """
+    Given a list of brand names, return every branch (with its ID & details).
+    """
+    conn    = auth.get_direct_db_connection()
+    cursor  = conn.cursor(dictionary=True)
+    placeholders = ",".join("%s" for _ in req.brand_names)
+    sql = f"""
+      SELECT
+        restaurant_id, name, location_latitude, location_longitude,
+        cuisine_type, average_rating, location_name
+      FROM recommendar_restaurant
+      WHERE name IN ({placeholders})
+    """
+    cursor.execute(sql, tuple(req.brand_names))
+    rows = cursor.fetchall()
+    cursor.close(); conn.close()
+
+    for r in rows:
+        r["cuisine_type"] = json.loads(r["cuisine_type"])
+    return rows
+
+
+
+
 
 @app.post("/api/dishes/search", response_model=List[DishOut])
 def search_dishes_form(

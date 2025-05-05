@@ -160,6 +160,9 @@ def haversine(lat1, lon1, lat2, lon2):
     distance = R * c  # in kilometers
     return distance
 
+import mysql.connector
+from math import radians, cos, sin, acos
+
 def execute_query(params):
     """
     Execute search query based on structured parameters.
@@ -169,96 +172,95 @@ def execute_query(params):
         with get_db_connection() as conn:
             cursor = conn.cursor(dictionary=True)
 
-            # --- Parse params ---
-            unique_limit = 10
-            dish_filter   = None
-            user_lat      = None
-            user_lon      = None
+            # --- Default parameters ---
+            limit = 10
+            dish_filter = None
+            user_lat = None
+            user_lon = None
 
+            # --- Parse incoming params ---
             for p in params:
-                if p["parameter"] == "dish_type":
-                    dish_filter = f"%{p['value']}%"
-                elif p["parameter"] == "limit":
-                    unique_limit = int(p["value"])
-                elif p["parameter"] == "location_latitude":
-                    user_lat = float(p["value"])
-                elif p["parameter"] == "location_longitude":
-                    user_lon = float(p["value"])
+                key = p.get("parameter")
+                val = p.get("value")
+                if key == "limit":
+                    limit = int(val)
+                elif key == "dish_type":
+                    dish_filter = f"%{val}%"
+                elif key == "location_latitude":
+                    user_lat = float(val)
+                elif key == "location_longitude":
+                    user_lon = float(val)
 
-            # --- Build SELECT fields ---
+            # --- Build SELECT clauses ---
             select_fields = [
-                "r.name            AS restaurant_name",
+                "d.dish_id",
                 "d.dish_name",
                 "COALESCE(o.price_override, d.price) AS price",
-                "r.location_latitude  AS restaurant_latitude",
-                "r.location_longitude AS restaurant_longitude",
-                "r.location_name",
+                "r.name AS restaurant_name",
+                "r.location_latitude",
+                "r.location_longitude",
+                "r.location_name"
             ]
             query_args = []
 
-            # if we have user location, include distance for ordering/filtering
+            # Distance expression for proximity filter / ordering
+            distance_sql = (
+                " (6371 * acos("
+                "cos(radians(%s)) * cos(radians(r.location_latitude)) * "
+                "cos(radians(r.location_longitude) - radians(%s)) + "
+                "sin(radians(%s)) * sin(radians(r.location_latitude))"
+                ")) "
+            )
+
             if user_lat is not None and user_lon is not None:
-                select_fields.insert(
-                    0,
-                    "(6371 * acos("
-                      "cos(radians(%s)) * cos(radians(r.location_latitude)) * "
-                      "cos(radians(r.location_longitude) - radians(%s)) + "
-                      "sin(radians(%s)) * sin(radians(r.location_latitude))"
-                    ")) AS distance"
-                )
+                select_fields.insert(0, f"{distance_sql} AS distance_km")
                 query_args.extend([user_lat, user_lon, user_lat])
 
-            sql = f"""
+            base_sql = f"""
                 SELECT {', '.join(select_fields)}
-                  FROM recommendar_dishoffering o
-                  JOIN recommendar_dish       d ON o.dish_id       = d.dish_id
-                  JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
+                FROM recommendar_dishoffering o
+                JOIN recommendar_dish d ON o.dish_id = d.dish_id
+                JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
             """
 
             # --- Build WHERE clauses ---
-            where = []
+            where_clauses = []
             if dish_filter:
-                where.append("d.dish_name LIKE %s")
+                where_clauses.append("d.dish_name LIKE %s")
                 query_args.append(dish_filter)
 
             if user_lat is not None and user_lon is not None:
-                where.append(
-                    "(6371 * acos("
-                      "cos(radians(%s)) * cos(radians(r.location_latitude)) * "
-                      "cos(radians(r.location_longitude) - radians(%s)) + "
-                      "sin(radians(%s)) * sin(radians(r.location_latitude))"
-                    ")) < 10"
-                )
+                where_clauses.append(f"{distance_sql} < 10")
                 query_args.extend([user_lat, user_lon, user_lat])
 
-            if where:
-                sql += " WHERE " + " AND ".join(where)
+            if where_clauses:
+                base_sql += " WHERE " + " AND ".join(where_clauses)
 
-            # order by distance if available
+            # --- ORDER BY ---
             if user_lat is not None and user_lon is not None:
-                sql += " ORDER BY distance"
+                base_sql += " ORDER BY distance_km"
 
-            # no SQL LIMIT here – we'll enforce a **unique** limit in Python
-            cursor.execute(sql, tuple(query_args))
+            # Execute and fetch
+            cursor.execute(base_sql, tuple(query_args))
             rows = cursor.fetchall()
 
-            # --- Dedupe by dish_name & slice to unique_limit ---
+            # --- Deduplicate by dish_name and enforce limit ---
             seen = set()
             unique_results = []
             for row in rows:
-                dish = row["dish_name"]
-                if dish not in seen:
-                    seen.add(dish)
+                name = row["dish_name"]
+                if name not in seen:
+                    seen.add(name)
                     unique_results.append(row)
-                    if len(unique_results) >= unique_limit:
+                    if len(unique_results) >= limit:
                         break
 
             return unique_results
 
-    except mysql.connector.Error as e:
-        return [{"error": str(e)}]
-    except Exception as e:
-        return [{"error": str(e)}]
+    except mysql.connector.Error as err:
+        return [{"error": f"DB error: {err}"}]
+    except Exception as exc:
+        return [{"error": f"Unexpected error: {exc}"}]
 
 
 import mysql.connector
