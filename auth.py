@@ -118,7 +118,7 @@ def handle_signin(user: dict, request: Request, result_holder: dict):
         # Populate the result holder with successful login info
         result_holder["message"] = "Login successful"
         result_holder["ip"] = client_ip
-        result_holder["name"] = db_user.get("name")  # Fetch the name field from the database user
+        result_holder["name"] = db_user.get("email")  # Fetch the name field from the database user
     except Exception as e:
         result_holder["error"] = str(e)
         

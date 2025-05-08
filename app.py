@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 import uvicorn
 import threading
 from pymongo import MongoClient
-from typing import List, Optional
+from typing import List, Optional, Dict ,Any
 from langchain_groq import ChatGroq
 import search
 import auth
@@ -61,6 +61,8 @@ class SearchResponse(BaseModel):
 class DishOut(BaseModel):
     dish_id:     int
     dish_name:   str
+    restaurant:  str
+    restaurant_location: str
     price:       float
     category:    Optional[str]
     description: Optional[str]
@@ -291,97 +293,138 @@ def list_all_restaurants():
 
 
 
+class InteractiveDishOut(BaseModel):
+    dish_id:     int
+    Item:        str
+    PricePKR:    float
+    Description: str
+    Restaurant:  str
+
+class LikeBranchesRequest(BaseModel):
+    branch_ids: List[int]
+
 @app.post(
     "/interactive/restaurants/like",
     response_model=List[InteractiveDishOut],
 )
-def like_branches_and_get_dishes(
-    req: LikeBranchesRequest = Body(...)
-):
-    email      = req.email
-    branch_ids = req.branch_ids
-
-    # --- Persist liked branches with a proper rec_rank ---
-    conn, cursor = auth.get_direct_db_connection(), None
-    try:
-        cursor = conn.cursor()
-        # clear old picks
-        cursor.execute(
-            "DELETE FROM user_restaurant_recommendations WHERE user_email=%s",
-            (email,)
-        )
-        # insert with rec_rank = 1, 2, 3
-        for rank, rid in enumerate(branch_ids, start=1):
-            cursor.execute(
-                """
-                INSERT INTO user_restaurant_recommendations
-                   (user_email, restaurant_id, rec_rank)
-                VALUES (%s,%s,%s)
-                """,
-                (email, rid, rank)
-            )
-        conn.commit()
-    finally:
-        if cursor: cursor.close()
-        conn.close()
-
-    # --- Fetch dishes from those branches (same as before) ---
-    conn, cursor = auth.get_direct_db_connection(), None
-    try:
-        cursor = conn.cursor(dictionary=True)
-        placeholders = ",".join("%s" for _ in branch_ids)
-        sql = f"""
-        SELECT DISTINCT
-           d.dish_id,
-           d.dish_name AS Item,
-           COALESCE(o.price_override, d.price) AS PricePKR,
-           d.description                    AS Description,
-           r.name                           AS Restaurant
-        FROM recommendar_dishoffering o
-        JOIN recommendar_dish d       ON o.dish_id       = d.dish_id
-        JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
-        WHERE o.restaurant_id IN ({placeholders})
-        """
-        cursor.execute(sql, tuple(branch_ids))
-        dishes = cursor.fetchall()
-    finally:
-        if cursor: cursor.close()
-        conn.close()
-
-    return dishes
-
-# Step 3: User selects 3 dish IDs, persist
+def interactive_get_dishes(req: LikeBranchesRequest = Body(...)):
+    """
+    Step 2: Given 3 branch_ids, return all dishes from those branches.
+    """
+    if not req.branch_ids:
+        raise HTTPException(400, "No branch_ids provided")
+    placeholders = ",".join("%s" for _ in req.branch_ids)
+    sql = f"""
+      SELECT DISTINCT
+        d.dish_id,
+        d.dish_name       AS Item,
+        COALESCE(o.price_override, d.price) AS PricePKR,
+        d.description     AS Description,
+        r.name            AS Restaurant
+      FROM recommendar_dishoffering o
+      JOIN recommendar_dish d       ON o.dish_id       = d.dish_id
+      JOIN recommendar_restaurant r ON o.restaurant_id = r.restaurant_id
+      WHERE o.restaurant_id IN ({placeholders})
+    """
+    conn   = auth.get_direct_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute(sql, tuple(req.branch_ids))
+    rows = cursor.fetchall()
+    cursor.close(); conn.close()
+    return rows
 
 
-@app.post("/interactive/dishes/like")
-def like_dishes(
+from fastapi import Body
+from typing import Any, Dict, List
+from pydantic import BaseModel
+
+class LikeDishesRequest(BaseModel):
+    email:    str
+    dish_ids: List[int]
+
+@app.post(
+    "/interactive/dishes/like",
+    response_model=Dict[str, Any],
+)
+async def interactive_like_and_recommend(
     req: LikeDishesRequest = Body(...)
 ):
+    """
+    Persist the 3 liked dish_ids, then call your /recommend REST & DISH endpoints,
+    await them, save the top-5 picks, and return both lists.
+    """
     email    = req.email
     dish_ids = req.dish_ids
 
-    conn, cursor = auth.get_direct_db_connection(), None
+    if not email or len(dish_ids) != 3:
+        raise HTTPException(400, "Must supply email and exactly 3 dish_ids")
+
+    # --- Persist the user's 3 likes ---
+    conn = auth.get_direct_db_connection()
     try:
         cursor = conn.cursor()
         cursor.execute(
             "DELETE FROM user_dish_recommendations WHERE user_email=%s",
-            (email,)
+            (email,),
         )
         for rank, did in enumerate(dish_ids, start=1):
             cursor.execute(
-                """
-                INSERT INTO user_dish_recommendations
-                   (user_email, dish_id, rec_rank)
-                VALUES (%s,%s,%s)
-                """,
-                (email, did, rank)
+                "INSERT INTO user_dish_recommendations "
+                "(user_email, dish_id, rec_rank) VALUES (%s,%s,%s)",
+                (email, did, rank),
             )
         conn.commit()
     finally:
-        if cursor: cursor.close()
+        cursor.close()
         conn.close()
 
-    return {"status": "success"}
+    # --- Build the parameters for restaurant recs ---
+    # fetch the restaurant *names* behind those dish_ids
+    conn = auth.get_direct_db_connection()
+    try:
+        cursor = conn.cursor()
+        placeholders = ",".join("%s" for _ in dish_ids)
+        cursor.execute(
+            f"SELECT DISTINCT r.name FROM recommendar_dishoffering o "
+            f" JOIN recommendar_restaurant r ON o.restaurant_id=r.restaurant_id"
+            f" WHERE o.dish_id IN ({placeholders})",
+            tuple(dish_ids),
+        )
+        liked_restaurant_names = [row[0] for row in cursor.fetchall()]
+    finally:
+        cursor.close()
+        conn.close()
+
+    # --- Await the two recommendation endpoints ---
+    rest_recs = await recommend_restaurants(
+        email=email,
+        liked_restaurants=liked_restaurant_names,
+        liked_dishes=[],
+    )
+    # now fetch the dish names for the liked IDs
+    conn = auth.get_direct_db_connection()
+    try:
+        cursor = conn.cursor()
+        cursor.execute(
+            f"SELECT dish_name FROM recommendar_dish WHERE dish_id IN ({placeholders})",
+            tuple(dish_ids),
+        )
+        liked_dish_names = [row[0] for row in cursor.fetchall()]
+    finally:
+        cursor.close()
+        conn.close()
+
+    dish_recs = await recommend_dishes(
+        email=email,
+        liked_restaurants=[],
+        liked_dishes=liked_dish_names,
+    )
+
+    return {
+        "restaurant_recs": rest_recs,
+        "dish_recs":       dish_recs
+    }
+
 
 from pydantic import BaseModel
 from typing import List
@@ -450,6 +493,8 @@ def search_dishes_form(
             SELECT
               d.dish_id,
               d.dish_name,
+              r.name AS restaurant,
+              r.location_name AS restaurant_location,
               COALESCE(o.price_override, d.price) AS price,
               d.category,
               d.description,

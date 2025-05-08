@@ -282,19 +282,29 @@ def recent_reviews(result_holder: dict):
         # pull the latest 10 reviews
         query = """
         SELECT
-            rr.review_id,
-            rr.review_text,
-            rr.timestamp,
-            rr.restaurant_id,
-            rr.dish_id,
-            rr.ambiance_score,
-            rr.food_quality_score,
-            rr.sentiment_score,
-            rr.service_experience_score,
-            r.name AS restaurant_name
-        FROM recommendar_review AS rr
-        JOIN recommendar_restaurant AS r
-          ON rr.restaurant_id = r.restaurant_id
+        rr.review_id,
+        rr.review_text,
+        rr.timestamp,
+        rr.restaurant_id,
+        rr.dish_id,
+        rr.ambiance_score,
+        rr.food_quality_score,
+        rr.sentiment_score,
+        rr.service_experience_score,
+        r.name AS restaurant_name
+        FROM recommendar_review rr
+        -- find the latest timestamp per restaurant
+        JOIN (
+        SELECT
+            restaurant_id,
+            MAX(timestamp) AS latest_ts
+        FROM recommendar_review
+        GROUP BY restaurant_id
+        ) latest
+        ON rr.restaurant_id = latest.restaurant_id
+        AND rr.timestamp     = latest.latest_ts
+        JOIN recommendar_restaurant r
+        ON rr.restaurant_id = r.restaurant_id
         ORDER BY rr.timestamp DESC
         LIMIT 10;
         """
