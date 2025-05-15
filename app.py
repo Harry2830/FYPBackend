@@ -21,6 +21,7 @@ import torch
 import torch.nn as nn
 from sklearn.preprocessing import LabelEncoder
 from rapidfuzz import process
+from collections import defaultdict
 
 # Load environment
 dotenv_loaded = load_dotenv()
@@ -101,6 +102,26 @@ class LikeBranchesRequest(BaseModel):
 class LikeDishesRequest(BaseModel):
     email: str
     dish_ids: List[int]
+
+class DishRecUser(BaseModel):
+    dish_id: int
+    dish_name: str
+    price: float
+    category: str
+    description: Optional[str]
+    image: Optional[str]
+    rec_rank: int
+
+class RestaurantRecUser(BaseModel):
+    restaurant_id: int
+    name: str
+    location_latitude: float
+    location_longitude: float
+    cuisine_type: Optional[str]
+    average_rating: Optional[float]
+    location_name: Optional[str]
+    image: Optional[str]
+    rec_rank: int
 
 # --------------------- ChatGroq Init ---------------------
 def initialize_chat_model():
@@ -334,10 +355,6 @@ def interactive_get_dishes(req: LikeBranchesRequest = Body(...)):
     return rows
 
 
-from fastapi import Body
-from typing import Any, Dict, List
-from pydantic import BaseModel
-
 class LikeDishesRequest(BaseModel):
     email:    str
     dish_ids: List[int]
@@ -426,9 +443,6 @@ async def interactive_like_and_recommend(
     }
 
 
-from pydantic import BaseModel
-from typing import List
-
 class BrandOut(BaseModel):
     name: str
 
@@ -475,7 +489,93 @@ def list_branches_by_brand(req: BrandListRequest):
     return rows
 
 
+class RecommendRequest(BaseModel):
+    email: str
 
+@app.post("/recommend/dishes/user", response_model=List[DishRecUser])
+async def recommend_dishes_user(req: RecommendRequest = Body(...)):
+    email = req.email
+
+    """
+    Fetch personalized dish recommendations for a given user_email.
+    Joins user_dish_recommendations → recommendar_dish to deliver full dish metadata.
+    """
+    try:
+        conn = auth.get_direct_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(
+            """
+            SELECT
+              d.dish_id,
+              d.dish_name,
+              d.price,
+              d.category,
+              d.description,
+              d.image,
+              u.rec_rank
+            FROM user_dish_recommendations AS u
+            INNER JOIN recommendar_dish AS d
+              ON u.dish_id = d.dish_id
+            WHERE u.user_email = %s
+            ORDER BY u.rec_rank
+            """,
+            (email,)
+        )
+        results = cursor.fetchall()
+    except Exception as exc:
+        logging.error(f"[recommend_dishes] DB error for {email}: {exc}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve dish recommendations.")
+    finally:
+        cursor.close()
+        conn.close()
+
+    if not results:
+        raise HTTPException(status_code=404, detail="No dish recommendations found for this user.")
+
+    return results
+
+@app.post("/recommend/restaurants/user", response_model=List[RestaurantRecUser])
+async def recommend_restaurants_user(req: RecommendRequest = Body(...)):
+    email = req.email
+    """
+    Fetch persisted restaurant recommendations for a given user_email.
+    Joins user_restaurant_recommendations → recommendar_restaurant to deliver complete metadata.
+    """
+    try:
+        conn = auth.get_direct_db_connection()
+        cursor = conn.cursor(dictionary=True)
+        cursor.execute(
+            """
+            SELECT
+              r.restaurant_id,
+              r.name,
+              CAST(r.location_latitude AS DECIMAL(9,6))   AS location_latitude,
+              CAST(r.location_longitude AS DECIMAL(9,6))  AS location_longitude,
+              r.cuisine_type,
+              r.average_rating,
+              r.location_name,
+              r.image,
+              u.rec_rank
+            FROM user_restaurant_recommendations AS u
+            INNER JOIN recommendar_restaurant AS r
+              ON u.restaurant_id = r.restaurant_id
+            WHERE u.user_email = %s
+            ORDER BY u.rec_rank
+            """,
+            (email,)
+        )
+        results = cursor.fetchall()
+    except Exception as exc:
+        logging.error(f"[recommend_restaurants] DB error for {email}: {exc}")
+        raise HTTPException(status_code=500, detail="Failed to retrieve restaurant recommendations.")
+    finally:
+        cursor.close()
+        conn.close()
+
+    if not results:
+        raise HTTPException(status_code=404, detail="No restaurant recommendations found for this user.")
+
+    return results
 
 
 @app.post("/api/dishes/search", response_model=List[DishOut])
@@ -593,54 +693,126 @@ async def search_query(query: str = Form(...)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# -------- GET /api/restaurants (Code 1) --------
-@app.get("/api/restaurants", response_model=List[Restaurant])
+class Restaurant(BaseModel):
+    restaurant_id:        int
+    name:                 str
+    location_latitude:    float
+    location_longitude:   float
+    cuisine_type:         List[str]
+    average_rating:       float
+    location_name:        str
+    avg_ambiance:         Optional[float] = None
+    avg_food_quality:     Optional[float] = None
+    avg_service:          Optional[float] = None
+    avg_sentiment:        Optional[float] = None
+
+@app.get("/api/restaurants", response_model=List[dict])
 def list_restaurants(
-    cuisine: Optional[str] = Query(
-        None,
-        description="Filter by cuisine type (e.g. Pakistani). Matches if the restaurant has this cuisine in its JSON array."
-    ),
-    minRating: float = Query(
-        0.0,
-        ge=0.0,
-        le=5.0,
-        description="Minimum average rating (0.0–5.0)."
-    )
+    cuisine:   Optional[str] = Query(
+                  None,
+                  description="Filter by cuisine type (e.g. Pakistani)."
+               ),
+    minRating: float         = Query(
+                  0.0, ge=0.0, le=5.0,
+                  description="Minimum average rating (0.0–5.0)."
+               )
 ):
     try:
-        conn = auth.get_direct_db_connection()
+        conn   = auth.get_direct_db_connection()
         cursor = conn.cursor(dictionary=True)
 
+        # --- 1) your original SQL + aspect averages ---
         sql = """
         SELECT
-            restaurant_id,
-            name,
-            CAST(location_latitude AS DECIMAL(9,6)) AS location_latitude,
-            CAST(location_longitude AS DECIMAL(9,6)) AS location_longitude,
-            cuisine_type,
-            CAST(average_rating AS DECIMAL(2,1))         AS average_rating,
-            location_name
-        FROM recommendar_restaurant
-        WHERE average_rating >= %s
+            r.restaurant_id,
+            r.name,
+            CAST(r.location_latitude  AS DECIMAL(9,6)) AS location_latitude,
+            CAST(r.location_longitude AS DECIMAL(9,6)) AS location_longitude,
+            r.cuisine_type,
+            CAST(r.average_rating    AS DECIMAL(2,1))  AS average_rating,
+            r.location_name,
+            AVG(rv.ambiance_score)           AS avg_ambiance,
+            AVG(rv.food_quality_score)       AS avg_food_quality,
+            AVG(rv.service_experience_score) AS avg_service,
+            AVG(rv.sentiment_score)          AS avg_sentiment
+        FROM recommendar_restaurant AS r
+        LEFT JOIN recommendar_review      AS rv
+          ON r.restaurant_id = rv.restaurant_id
+        WHERE r.average_rating >= %s
         """
         params = [minRating]
 
         if cuisine:
-            sql += " AND JSON_CONTAINS(cuisine_type, %s)"
+            sql += " AND JSON_CONTAINS(r.cuisine_type, %s)"
             params.append(json.dumps(cuisine))
 
-        cursor.execute(sql, params)
-        rows = cursor.fetchall()
-        for row in rows:
-            row["cuisine_type"] = json.loads(row["cuisine_type"])
+        sql += """
+        GROUP BY
+            r.restaurant_id,
+            r.name,
+            r.location_latitude,
+            r.location_longitude,
+            r.cuisine_type,
+            r.average_rating,
+            r.location_name
+        ORDER BY r.average_rating DESC
+        LIMIT 100
+        """
 
-        return rows
+        cursor.execute(sql, tuple(params))
+        restaurants = cursor.fetchall()
 
-    except mysql.connector.Error as e:
-        raise HTTPException(status_code=500, detail=f"Database error: {e}")
+        # --- 2) normalize fields ---
+        for r in restaurants:
+            r["cuisine_type"]     = json.loads(r["cuisine_type"])
+            for fld in ("avg_ambiance","avg_food_quality","avg_service","avg_sentiment"):
+                val = r.get(fld)
+                r[fld] = float(val) if val is not None else None
+
+        # --- 3) pull in all aspect analytics in one go ---
+        ids = [r["restaurant_id"] for r in restaurants]
+        aspect_map = defaultdict(list)
+        if ids:
+            fmt  = ",".join(["%s"] * len(ids))
+            query = f"""
+              SELECT
+                restaurant_id,
+                aspect_type,
+                average_sentiment_score,
+                Average_count,
+                BelowAverage_count,
+                Brilliant_count,
+                Good_count,
+                NotRecommended_count
+              FROM recommendar_aspectanalytics
+              WHERE restaurant_id IN ({fmt})
+            """
+            cursor.execute(query, tuple(ids))
+            for a in cursor.fetchall():
+                # keep keys camelCase on the JSON side
+                aspect_map[a["restaurant_id"]].append({
+                  "aspectType":              a["aspect_type"],
+                  "avgSentimentScore":       float(a["average_sentiment_score"]),
+                  "averageCount":            a["Average_count"],
+                  "belowAverageCount":       a["BelowAverage_count"],
+                  "brilliantCount":          a["Brilliant_count"],
+                  "goodCount":               a["Good_count"],
+                  "notRecommendedCount":     a["NotRecommended_count"],
+                })
+
+        # --- 4) attach to each restaurant object ---
+        for r in restaurants:
+            r["aspect_analytics"] = aspect_map.get(r["restaurant_id"], [])
+
+        return restaurants
+
+    except Exception as e:
+        logging.error(f"list_restaurants error: {e}")
+        raise HTTPException(status_code=500, detail="Database error")
     finally:
         cursor.close()
         conn.close()
+
 
 @app.post("/api/signup")
 async def signup(
